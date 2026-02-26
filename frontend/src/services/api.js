@@ -60,6 +60,34 @@ class ApiService {
     login(data) { return this.post('/auth/login', data); }
     logout() { return this.post('/auth/logout'); }
     getMe() { return this.get('/auth/me'); }
+
+    // Medication endpoints
+    getMedications() { return this.get('/medications'); }
+    getMedication(id) { return this.get(`/medications/${id}`); }
+    createMedication(data) { return this.post('/medications', data); }
+    updateMedication(id, data) { return this.put(`/medications/${id}`, data); }
+    deleteMedication(id) { return this.delete(`/medications/${id}`); }
+    getTodaySchedule() { return this.get('/medications/schedule/today'); }
+    takeDose(data) { return this.post('/medications/dose/take', data); }
+
+    // Document endpoints
+    getDocuments(category = '') { 
+        const url = category ? `/documents?category=${category}` : '/documents';
+        return this.get(url); 
+    }
+    getDocument(id) { return this.get(`/documents/${id}`); }
+    getDocumentUrl(id) { return `${API_BASE}/documents/${id}/download`; }
+    uploadDocument(formData) { return this.post('/documents/upload', formData); }
+    renameDocument(id, name) { return this.put(`/documents/${id}`, { name }); }
+    deleteDocument(id) { return this.delete(`/documents/${id}`); }
+
+    // Notification endpoints
+    getNotifications() { return this.get('/notifications'); }
+    markNotificationAsRead(id) { return this.put(`/notifications/${id}`, { read: true }); }
+
+    // User endpoints
+    updateProfile(data) { return this.put('/users/profile', data); }
+    uploadProfilePicture(formData) { return this.post('/users/profile-picture', formData); }
 }
 
 const api = new ApiService();

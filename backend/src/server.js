@@ -11,6 +11,10 @@ const errorHandler = require('./middlewares/errorHandler');
 
 // Routes
 const authRoutes = require('./routes/auth');
+const medicationRoutes = require('./routes/medications');
+const documentRoutes = require('./routes/documents');
+const notificationRoutes = require('./routes/notifications');
+const userRoutes = require('./routes/users');
 
 const app = express();
 
@@ -50,6 +54,10 @@ app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 // API Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/medications', medicationRoutes);
+app.use('/api/documents', documentRoutes);
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/users', userRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

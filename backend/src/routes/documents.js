@@ -6,10 +6,10 @@ const upload = require('../middlewares/upload');
 
 router.use(auth);
 
-router.get('/', documentController.getAll);
 router.post('/upload', upload.single('file'), documentController.upload);
+router.get('/:id/download', documentController.download);
+router.get('/', documentController.getAll);
 router.put('/:id', documentController.rename);
 router.delete('/:id', documentController.remove);
-router.get('/:id/download', documentController.download);
 
 module.exports = router;

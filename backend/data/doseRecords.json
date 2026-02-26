@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "c412402b-c718-4868-b37b-e6e98fdd4a54",
+    "userId": "6b2dc20c-363a-4b88-969f-fa110303ff98",
+    "medicationId": "med-4",
+    "scheduledTime": "08:00",
+    "date": "2026-02-26",
+    "status": "missed",
+    "createdAt": "2026-02-26T14:27:07.019Z"
+  },
+  {
+    "_id": "0df8b052-3619-49f0-83e0-1a6eb5e47b71",
+    "userId": "6b2dc20c-363a-4b88-969f-fa110303ff98",
+    "medicationId": "med-5",
+    "scheduledTime": "21:00",
+    "date": "2026-02-26",
+    "status": "upcoming",
+    "createdAt": "2026-02-26T14:27:07.053Z"
+  }
+]

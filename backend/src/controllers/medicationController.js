@@ -1,12 +1,15 @@
-const Medication = require('../models/Medication');
-const DoseRecord = require('../models/DoseRecord');
+/**
+ * Panacea — Medication Controller (JSON file-based)
+ */
+
+const medicationStore = require('../config/medicationStore');
+const doseRecordStore = require('../config/doseRecordStore');
+const { v4: uuidv4 } = require('uuid');
 
 // Get all medications for user
 exports.getAll = async (req, res, next) => {
     try {
-        const medications = await Medication.find({ userId: req.userId }).sort({
-            createdAt: -1,
-        });
+        const medications = medicationStore.find({ userId: req.userId }).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         res.json({ success: true, data: medications });
     } catch (error) {
         next(error);
@@ -16,7 +19,7 @@ exports.getAll = async (req, res, next) => {
 // Get single medication
 exports.getOne = async (req, res, next) => {
     try {
-        const medication = await Medication.findOne({
+        const medication = medicationStore.findOne({
             _id: req.params.id,
             userId: req.userId,
         });
@@ -39,30 +42,23 @@ exports.create = async (req, res, next) => {
     try {
         const { name, dosage, timings, totalStock, instructions } = req.body;
 
-        const medication = await Medication.create({
+        if (!name || !dosage || !timings || timings.length === 0 || totalStock === undefined) {
+            return res.status(400).json({
+                success: false,
+                message: 'Name, dosage, timings, and totalStock are required.',
+            });
+        }
+
+        const medication = medicationStore.create({
             userId: req.userId,
             name,
             dosage,
             timings,
             totalStock,
             remainingStock: totalStock,
-            instructions,
+            instructions: instructions || '',
+            active: true,
         });
-
-        // Create today's dose records
-        const today = new Date().toISOString().split('T')[0];
-        const now = new Date();
-        const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-
-        const doseRecords = timings.map((time) => ({
-            userId: req.userId,
-            medicationId: medication._id,
-            scheduledTime: time,
-            date: today,
-            status: time < currentTime ? 'missed' : 'upcoming',
-        }));
-
-        await DoseRecord.insertMany(doseRecords);
 
         res.status(201).json({ success: true, data: medication });
     } catch (error) {
@@ -75,10 +71,9 @@ exports.update = async (req, res, next) => {
     try {
         const { name, dosage, timings, totalStock, remainingStock, instructions, active } = req.body;
 
-        const medication = await Medication.findOneAndUpdate(
+        const medication = medicationStore.findOneAndUpdate(
             { _id: req.params.id, userId: req.userId },
-            { name, dosage, timings, totalStock, remainingStock, instructions, active },
-            { new: true, runValidators: true }
+            { name, dosage, timings, totalStock, remainingStock, instructions, active }
         );
 
         if (!medication) {
@@ -97,7 +92,7 @@ exports.update = async (req, res, next) => {
 // Delete medication
 exports.remove = async (req, res, next) => {
     try {
-        const medication = await Medication.findOneAndDelete({
+        const medication = medicationStore.findOneAndDelete({
             _id: req.params.id,
             userId: req.userId,
         });
@@ -110,7 +105,7 @@ exports.remove = async (req, res, next) => {
         }
 
         // Delete associated dose records
-        await DoseRecord.deleteMany({ medicationId: req.params.id });
+        doseRecordStore.deleteByMedicationId(req.params.id);
 
         res.json({ success: true, message: 'Medication deleted' });
     } catch (error) {
@@ -123,8 +118,15 @@ exports.takeDose = async (req, res, next) => {
     try {
         const { medicationId, scheduledTime, date } = req.body;
 
-        // Find the dose record
-        let doseRecord = await DoseRecord.findOne({
+        if (!medicationId || !scheduledTime || !date) {
+            return res.status(400).json({
+                success: false,
+                message: 'medicationId, scheduledTime, and date are required.',
+            });
+        }
+
+        // Find or create dose record
+        let doseRecord = doseRecordStore.findOne({
             medicationId,
             userId: req.userId,
             scheduledTime,
@@ -132,25 +134,28 @@ exports.takeDose = async (req, res, next) => {
         });
 
         if (!doseRecord) {
-            // Create one if it doesn't exist
-            doseRecord = await DoseRecord.create({
+            doseRecord = doseRecordStore.create({
                 medicationId,
                 userId: req.userId,
                 scheduledTime,
                 date,
                 status: 'taken',
-                takenAt: new Date(),
+                takenAt: new Date().toISOString(),
             });
         } else {
-            doseRecord.status = 'taken';
-            doseRecord.takenAt = new Date();
-            await doseRecord.save();
+            doseRecord = doseRecordStore.updateById(doseRecord._id, {
+                status: 'taken',
+                takenAt: new Date().toISOString(),
+            });
         }
 
         // Decrease remaining stock
-        await Medication.findByIdAndUpdate(medicationId, {
-            $inc: { remainingStock: -1 },
-        });
+        const medication = medicationStore.findOne({ _id: medicationId });
+        if (medication) {
+            medicationStore.findByIdAndUpdate(medicationId, {
+                remainingStock: Math.max(0, medication.remainingStock - 1),
+            });
+        }
 
         res.json({ success: true, data: doseRecord });
     } catch (error) {
@@ -165,17 +170,11 @@ exports.getTodaySchedule = async (req, res, next) => {
         const now = new Date();
         const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
 
-        // Get all active medications
-        const medications = await Medication.find({
-            userId: req.userId,
-            active: true,
-        });
+        // Get all active medications for user
+        const medications = medicationStore.find({ userId: req.userId }).filter((m) => m.active);
 
         // Get existing dose records for today
-        const existingRecords = await DoseRecord.find({
-            userId: req.userId,
-            date: today,
-        });
+        const existingRecords = doseRecordStore.findByDate(today, req.userId);
 
         const schedule = [];
 
@@ -183,18 +182,18 @@ exports.getTodaySchedule = async (req, res, next) => {
             for (const time of med.timings) {
                 // Check if dose record exists
                 const existing = existingRecords.find(
-                    (r) => r.medicationId.toString() === med._id.toString() && r.scheduledTime === time
+                    (r) => r.medicationId === med._id && r.scheduledTime === time
                 );
 
                 if (existing) {
                     schedule.push({
-                        ...existing.toObject(),
+                        ...existing,
                         medication: med,
                     });
                 } else {
                     // Auto-create dose record
                     const status = time < currentTime ? 'missed' : 'upcoming';
-                    const record = await DoseRecord.create({
+                    const record = doseRecordStore.create({
                         userId: req.userId,
                         medicationId: med._id,
                         scheduledTime: time,
@@ -202,7 +201,7 @@ exports.getTodaySchedule = async (req, res, next) => {
                         status,
                     });
                     schedule.push({
-                        ...record.toObject(),
+                        ...record,
                         medication: med,
                     });
                 }

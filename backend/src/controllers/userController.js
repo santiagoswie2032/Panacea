@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const userStore = require('../config/userStore');
 
 // Get profile
 exports.getProfile = async (req, res) => {
@@ -26,10 +26,7 @@ exports.updateProfile = async (req, res, next) => {
             }
         });
 
-        const user = await User.findByIdAndUpdate(req.userId, updates, {
-            new: true,
-            runValidators: true,
-        });
+        const user = userStore.updateById(req.userId, updates);
 
         res.json({ success: true, data: user });
     } catch (error) {
@@ -58,11 +55,12 @@ exports.updateEmergencyInfo = async (req, res, next) => {
     try {
         const { emergencyContact, emergencyContactName, bloodGroup, medicalConditions } = req.body;
 
-        const user = await User.findByIdAndUpdate(
-            req.userId,
-            { emergencyContact, emergencyContactName, bloodGroup, medicalConditions },
-            { new: true, runValidators: true }
-        );
+        const user = userStore.updateById(req.userId, {
+            emergencyContact,
+            emergencyContactName,
+            bloodGroup,
+            medicalConditions,
+        });
 
         res.json({ success: true, data: user });
     } catch (error) {

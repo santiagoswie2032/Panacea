@@ -4,7 +4,8 @@ const notificationController = require('../controllers/notificationController');
 const auth = require('../middlewares/auth');
 
 router.get('/vapid-key', notificationController.getVapidKey);
-router.post('/subscribe', auth, notificationController.subscribe);
-router.post('/unsubscribe', auth, notificationController.unsubscribe);
+router.use(auth);
+router.post('/subscribe', notificationController.subscribe);
+router.post('/unsubscribe', notificationController.unsubscribe);
 
 module.exports = router;

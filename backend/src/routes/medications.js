@@ -5,8 +5,8 @@ const auth = require('../middlewares/auth');
 
 router.use(auth);
 
-router.get('/', medicationController.getAll);
 router.get('/schedule/today', medicationController.getTodaySchedule);
+router.get('/', medicationController.getAll);
 router.get('/:id', medicationController.getOne);
 router.post('/', medicationController.create);
 router.put('/:id', medicationController.update);
