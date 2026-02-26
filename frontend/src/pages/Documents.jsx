@@ -12,6 +12,41 @@ const CATEGORIES = [
     { key: 'labreport', label: 'Lab Reports', icon: '🔬' },
 ];
 
+const DUMMY_DOCUMENTS = [
+    {
+        _id: 'dummy1',
+        name: 'Chest X-Ray Report',
+        category: 'xray',
+        fileSize: 2048576,
+        createdAt: new Date('2025-12-15'),
+        isDummy: true,
+    },
+    {
+        _id: 'dummy2',
+        name: 'Blood Test Report',
+        category: 'labreport',
+        fileSize: 512000,
+        createdAt: new Date('2025-12-10'),
+        isDummy: true,
+    },
+    {
+        _id: 'dummy3',
+        name: 'Heart Medication Prescription',
+        category: 'prescription',
+        fileSize: 256000,
+        createdAt: new Date('2025-12-05'),
+        isDummy: true,
+    },
+    {
+        _id: 'dummy4',
+        name: 'Brain MRI Scan Results',
+        category: 'mri',
+        fileSize: 5242880,
+        createdAt: new Date('2025-11-20'),
+        isDummy: true,
+    },
+];
+
 function formatFileSize(bytes) {
     if (bytes === 0) return '0 B';
     const sizes = ['B', 'KB', 'MB', 'GB'];
@@ -33,9 +68,21 @@ export default function Documents() {
     const fetchDocuments = useCallback(async () => {
         try {
             const { data } = await api.getDocuments(activeCategory);
-            setDocuments(data);
+            // Use dummy data if no real documents exist
+            if (data && data.length > 0) {
+                setDocuments(data);
+            } else {
+                const filtered = activeCategory 
+                    ? DUMMY_DOCUMENTS.filter(doc => doc.category === activeCategory)
+                    : DUMMY_DOCUMENTS;
+                setDocuments(filtered);
+            }
         } catch (error) {
-            toast.error('Failed to load documents');
+            // Use dummy data on error
+            const filtered = activeCategory 
+                ? DUMMY_DOCUMENTS.filter(doc => doc.category === activeCategory)
+                : DUMMY_DOCUMENTS;
+            setDocuments(filtered);
         } finally {
             setLoading(false);
         }

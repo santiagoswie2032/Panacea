@@ -5,6 +5,7 @@ const navItems = [
     { path: '/', icon: '🏠', label: 'Home' },
     { path: '/medications', icon: '💊', label: 'Meds' },
     { path: '/documents', icon: '📁', label: 'Docs' },
+    { path: '/doctors', icon: '👨‍⚕️', label: 'Doctors' },
     { path: '/profile', icon: '👤', label: 'Profile' },
 ];
 
@@ -15,10 +16,10 @@ export default function Navbar() {
         <>
             {/* Top header bar */}
             <header className="top-bar">
-                <div className="top-bar__brand">
+                <NavLink to="/" className="top-bar__brand">
                     <span className="top-bar__logo">⚕️</span>
                     <span className="top-bar__title">Panacea</span>
-                </div>
+                </NavLink>
                 <NavLink to="/emergency" className="sos-button" aria-label="Emergency SOS">
                     SOS
                 </NavLink>
