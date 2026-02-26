@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "_id": "4f256f3d-72bd-4963-afae-1f154d5e6848",
+    "userId": "ef83a8ea-050d-4c80-bf91-6ffd91ca76fe",
+    "name": "erenwp2.jpg",
+    "category": "prescription",
+    "fileName": "1772118506155-192347310.jpg",
+    "originalName": "erenwp2.jpg",
+    "fileType": "image/jpeg",
+    "fileSize": 1856394,
+    "createdAt": "2026-02-26T15:08:26.262Z",
+    "updatedAt": "2026-02-26T15:08:26.262Z"
+  },
+  {
+    "_id": "6a0756c7-f375-4bc9-b69e-9e0d94ca0c6b",
+    "userId": "ef83a8ea-050d-4c80-bf91-6ffd91ca76fe",
+    "name": "Blue Minimalist Modern Business Presentation (1).pdf",
+    "category": "prescription",
+    "fileName": "1772118552859-682034574.pdf",
+    "originalName": "Blue Minimalist Modern Business Presentation (1).pdf",
+    "fileType": "application/pdf",
+    "fileSize": 304142,
+    "createdAt": "2026-02-26T15:09:12.893Z",
+    "updatedAt": "2026-02-26T15:09:12.893Z"
+  }
+]

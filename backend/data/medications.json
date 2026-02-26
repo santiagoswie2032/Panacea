@@ -4,7 +4,10 @@
     "userId": "241deaf3-7c34-47d1-a952-3a7b4a124519",
     "name": "Aspirin",
     "dosage": "500mg",
-    "timings": ["09:00", "18:00"],
+    "timings": [
+      "09:00",
+      "18:00"
+    ],
     "instructions": "Take with food. May cause drowsiness.",
     "totalStock": 60,
     "remainingStock": 45,
@@ -17,7 +20,9 @@
     "userId": "241deaf3-7c34-47d1-a952-3a7b4a124519",
     "name": "Vitamin D",
     "dosage": "2000 IU",
-    "timings": ["08:00"],
+    "timings": [
+      "08:00"
+    ],
     "instructions": "Take in the morning with breakfast.",
     "totalStock": 120,
     "remainingStock": 95,
@@ -30,7 +35,11 @@
     "userId": "241deaf3-7c34-47d1-a952-3a7b4a124519",
     "name": "Metformin",
     "dosage": "850mg",
-    "timings": ["07:30", "13:00", "19:30"],
+    "timings": [
+      "07:30",
+      "13:00",
+      "19:30"
+    ],
     "instructions": "Take with meals. Do not exceed 2000mg daily.",
     "totalStock": 90,
     "remainingStock": 60,
@@ -43,7 +52,9 @@
     "userId": "6b2dc20c-363a-4b88-969f-fa110303ff98",
     "name": "Lisinopril",
     "dosage": "10mg",
-    "timings": ["08:00"],
+    "timings": [
+      "08:00"
+    ],
     "instructions": "Take once daily in the morning.",
     "totalStock": 30,
     "remainingStock": 25,
@@ -56,12 +67,30 @@
     "userId": "6b2dc20c-363a-4b88-969f-fa110303ff98",
     "name": "Atorvastatin",
     "dosage": "20mg",
-    "timings": ["21:00"],
+    "timings": [
+      "21:00"
+    ],
     "instructions": "Take at bedtime.",
     "totalStock": 30,
     "remainingStock": 28,
     "active": true,
     "createdAt": "2026-02-26T11:05:00.000Z",
     "updatedAt": "2026-02-26T11:05:00.000Z"
+  },
+  {
+    "_id": "73c5c3ca-3dc9-4f5b-b875-a36f7343287e",
+    "userId": "ef83a8ea-050d-4c80-bf91-6ffd91ca76fe",
+    "name": "aspirin",
+    "dosage": "50mg",
+    "timings": [
+      "08:00",
+      "20:00"
+    ],
+    "totalStock": 23,
+    "remainingStock": 21,
+    "instructions": "after meals",
+    "active": true,
+    "createdAt": "2026-02-26T15:49:56.972Z",
+    "updatedAt": "2026-02-26T17:57:59.617Z"
   }
 ]

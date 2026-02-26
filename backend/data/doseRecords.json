@@ -16,5 +16,27 @@
     "date": "2026-02-26",
     "status": "upcoming",
     "createdAt": "2026-02-26T14:27:07.053Z"
+  },
+  {
+    "_id": "ae44a287-77e2-4954-a654-6b15408bfce2",
+    "userId": "ef83a8ea-050d-4c80-bf91-6ffd91ca76fe",
+    "medicationId": "73c5c3ca-3dc9-4f5b-b875-a36f7343287e",
+    "scheduledTime": "08:00",
+    "date": "2026-02-26",
+    "status": "taken",
+    "createdAt": "2026-02-26T15:49:57.042Z",
+    "takenAt": "2026-02-26T16:01:43.715Z",
+    "updatedAt": "2026-02-26T16:01:43.716Z"
+  },
+  {
+    "_id": "2a321f54-6f4f-4ed1-b95b-09db76c00ebb",
+    "userId": "ef83a8ea-050d-4c80-bf91-6ffd91ca76fe",
+    "medicationId": "73c5c3ca-3dc9-4f5b-b875-a36f7343287e",
+    "scheduledTime": "20:00",
+    "date": "2026-02-26",
+    "status": "taken",
+    "createdAt": "2026-02-26T15:49:57.047Z",
+    "takenAt": "2026-02-26T17:57:59.616Z",
+    "updatedAt": "2026-02-26T17:57:59.616Z"
   }
 ]
