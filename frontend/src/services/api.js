@@ -88,6 +88,8 @@ class ApiService {
     // User endpoints
     updateProfile(data) { return this.put('/users/profile', data); }
     uploadProfilePicture(formData) { return this.post('/users/profile-picture', formData); }
+    getEmergencyInfo() { return this.get('/users/emergency'); }
+    updateEmergencyInfo(data) { return this.put('/users/emergency', data); }
 }
 
 const api = new ApiService();

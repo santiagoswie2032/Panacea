@@ -43,17 +43,27 @@ export function AuthProvider({ children }) {
 
     const login = async (email, password) => {
         dispatch({ type: 'AUTH_LOADING' });
-        const { data } = await api.login({ email, password });
-        // Cookie is set by the server automatically
-        dispatch({ type: 'AUTH_SUCCESS', payload: data.user });
-        return data;
+        try {
+            const { data } = await api.login({ email, password });
+            // Cookie is set by the server automatically
+            dispatch({ type: 'AUTH_SUCCESS', payload: data.user });
+            return data;
+        } catch (error) {
+            dispatch({ type: 'AUTH_FAILURE' });
+            throw error;
+        }
     };
 
     const register = async (name, email, password) => {
         dispatch({ type: 'AUTH_LOADING' });
-        const { data } = await api.register({ name, email, password });
-        dispatch({ type: 'AUTH_SUCCESS', payload: data.user });
-        return data;
+        try {
+            const { data } = await api.register({ name, email, password });
+            dispatch({ type: 'AUTH_SUCCESS', payload: data.user });
+            return data;
+        } catch (error) {
+            dispatch({ type: 'AUTH_FAILURE' });
+            throw error;
+        }
     };
 
     const logout = async () => {

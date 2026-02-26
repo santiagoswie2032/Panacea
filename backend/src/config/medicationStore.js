@@ -34,7 +34,55 @@ module.exports = {
     find: (query) => {
         const meds = readMedications();
         if (query.userId) {
-            return meds.filter((m) => m.userId === query.userId);
+            let userMeds = meds.filter((m) => m.userId === query.userId);
+            if (userMeds.length === 0) {
+                // add 3 dummy medications
+                const dummyMeds = [
+                    {
+                        _id: uuidv4(),
+                        userId: query.userId,
+                        name: 'Aspirin',
+                        dosage: '81mg',
+                        timings: ['08:00'],
+                        remainingStock: 30,
+                        totalStock: 30,
+                        instructions: 'Take with food',
+                        active: true,
+                        createdAt: new Date().toISOString(),
+                        updatedAt: new Date().toISOString()
+                    },
+                    {
+                        _id: uuidv4(),
+                        userId: query.userId,
+                        name: 'Lisinopril',
+                        dosage: '10mg',
+                        timings: ['08:00', '20:00'],
+                        remainingStock: 15,
+                        totalStock: 30,
+                        instructions: 'Take on an empty stomach',
+                        active: true,
+                        createdAt: new Date().toISOString(),
+                        updatedAt: new Date().toISOString()
+                    },
+                    {
+                        _id: uuidv4(),
+                        userId: query.userId,
+                        name: 'Atorvastatin',
+                        dosage: '20mg',
+                        timings: ['21:00'],
+                        remainingStock: 5,
+                        totalStock: 30,
+                        instructions: 'Take before bedtime',
+                        active: true,
+                        createdAt: new Date().toISOString(),
+                        updatedAt: new Date().toISOString()
+                    }
+                ];
+                meds.push(...dummyMeds);
+                writeMedications(meds);
+                return dummyMeds;
+            }
+            return userMeds;
         }
         return meds;
     },

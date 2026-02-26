@@ -80,7 +80,14 @@ export default function Medications() {
         <div className="medications-page">
             <div className="section-header">
                 <h1 className="heading-2">Medications</h1>
-                <button className="btn btn--primary btn--sm" onClick={() => setShowForm(true)}>
+                <button
+                    className="btn btn--primary btn--sm"
+                    onClick={() => {
+                        // Ensure only one modal is ever open at a time
+                        setEditingMed(null);
+                        setShowForm(true);
+                    }}
+                >
                     + Add New
                 </button>
             </div>
