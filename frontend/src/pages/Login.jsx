@@ -125,24 +125,7 @@ export default function Login() {
                     </form>
                 </div>
 
-                <div className="login-features">
-                    <div className="login-feature">
-                        <span>💊</span>
-                        <span>Track Medications</span>
-                    </div>
-                    <div className="login-feature">
-                        <span>🔔</span>
-                        <span>Smart Reminders</span>
-                    </div>
-                    <div className="login-feature">
-                        <span>📁</span>
-                        <span>Health Records</span>
-                    </div>
-                    <div className="login-feature">
-                        <span>🆘</span>
-                        <span>Emergency SOS</span>
-                    </div>
-                </div>
+              
             </div>
         </div>
     );
