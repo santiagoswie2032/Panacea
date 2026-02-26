@@ -1,0 +1,16 @@
+[
+  {
+    "id": "241deaf3-7c34-47d1-a952-3a7b4a124519",
+    "name": "Test User",
+    "email": "test@panacea.com",
+    "password": "$2a$12$qQACQZe3ctgRAwJ1pLSpEeeAkfxg6Vda9f5Bu1juGsUbgh2XCXcr6",
+    "createdAt": "2026-02-26T14:07:52.116Z"
+  },
+  {
+    "id": "6b2dc20c-363a-4b88-969f-fa110303ff98",
+    "name": "jigyansh sahu",
+    "email": "jigyanshsahu8@gmail.com",
+    "password": "$2a$12$2SgXLbU0LWo/9nb8FWXgqeqRi0ql09.8NBDH3Y6zWk.r3JWzAblA2",
+    "createdAt": "2026-02-26T14:10:09.282Z"
+  }
+]

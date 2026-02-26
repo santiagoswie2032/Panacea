@@ -1,43 +1,44 @@
+/**
+ * Panacea — Auth Middleware
+ * Reads JWT from httpOnly cookie first, then falls back to Authorization Bearer header.
+ */
+
 const jwt = require('jsonwebtoken');
 const config = require('../config/env');
-const User = require('../models/User');
+const userStore = require('../config/userStore');
 
-const auth = async (req, res, next) => {
+const auth = (req, res, next) => {
     try {
-        const authHeader = req.headers.authorization;
+        // 1. Try cookie
+        let token = req.cookies && req.cookies.token;
 
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
-            return res.status(401).json({
-                success: false,
-                message: 'Access denied. No token provided.',
-            });
+        // 2. Fallback to Authorization header (e.g. Postman / API testing)
+        if (!token) {
+            const authHeader = req.headers.authorization;
+            if (authHeader && authHeader.startsWith('Bearer ')) {
+                token = authHeader.split(' ')[1];
+            }
         }
 
-        const token = authHeader.split(' ')[1];
-        const decoded = jwt.verify(token, config.jwt.secret);
+        if (!token) {
+            return res.status(401).json({ success: false, message: 'Access denied. No token provided.' });
+        }
 
-        const user = await User.findById(decoded.userId);
+        const decoded = jwt.verify(token, config.jwt.secret);
+        const user = userStore.findById(decoded.userId);
+
         if (!user) {
-            return res.status(401).json({
-                success: false,
-                message: 'User not found.',
-            });
+            return res.status(401).json({ success: false, message: 'User not found.' });
         }
 
         req.user = user;
-        req.userId = user._id;
+        req.userId = user.id;
         next();
     } catch (error) {
         if (error.name === 'TokenExpiredError') {
-            return res.status(401).json({
-                success: false,
-                message: 'Token expired.',
-            });
+            return res.status(401).json({ success: false, message: 'Token expired.' });
         }
-        return res.status(401).json({
-            success: false,
-            message: 'Invalid token.',
-        });
+        return res.status(401).json({ success: false, message: 'Invalid token.' });
     }
 };
 
