@@ -22,13 +22,34 @@ class ApiService {
                 credentials: 'include', // Always send the JWT cookie
             });
 
-            const data = await response.json();
+            // parse JSON only when appropriate, guard against empty/non-JSON bodies
+            let data = null;
+            const contentType = response.headers.get('content-type') || '';
+            if (contentType.includes('application/json')) {
+                try {
+                    data = await response.json();
+                } catch (err) {
+                    // invalid JSON body (maybe an HTML error page or empty response)
+                    console.warn('API returned non-json response', err);
+                    data = null;
+                }
+            } else {
+                // fallback: attempt to read text and parse
+                const text = await response.text();
+                try {
+                    data = text ? JSON.parse(text) : null;
+                } catch {
+                    data = null;
+                }
+            }
 
             if (!response.ok) {
                 if (response.status === 401 && window.location.pathname !== '/login') {
                     window.location.href = '/login';
                 }
-                throw new Error(data.message || 'Something went wrong');
+                // if we have parsed data with a message use it, otherwise fall back
+                const msg = data && data.message ? data.message : 'Something went wrong';
+                throw new Error(msg);
             }
 
             return data;

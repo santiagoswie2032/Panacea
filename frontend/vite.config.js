@@ -61,6 +61,7 @@ export default defineConfig({
                     },
                     {
                         urlPattern: /\/api\/.*/i,
+                        method: 'GET', // only cache GET requests (don't intercept POST/PUT/etc)
                         handler: 'NetworkFirst',
                         options: {
                             cacheName: 'api-cache',
