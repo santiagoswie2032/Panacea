@@ -28,31 +28,23 @@ function authReducer(state, action) {
 export function AuthProvider({ children }) {
     const [state, dispatch] = useReducer(authReducer, initialState);
 
-    // Check for existing token on mount
+    // Check auth by calling /api/auth/me — cookie is sent automatically
     useEffect(() => {
         const checkAuth = async () => {
-            const token = api.getToken();
-            if (!token) {
-                dispatch({ type: 'AUTH_FAILURE' });
-                return;
-            }
-
             try {
                 const { data } = await api.getMe();
                 dispatch({ type: 'AUTH_SUCCESS', payload: data.user });
             } catch {
-                api.setToken(null);
                 dispatch({ type: 'AUTH_FAILURE' });
             }
         };
-
         checkAuth();
     }, []);
 
     const login = async (email, password) => {
         dispatch({ type: 'AUTH_LOADING' });
         const { data } = await api.login({ email, password });
-        api.setToken(data.token);
+        // Cookie is set by the server automatically
         dispatch({ type: 'AUTH_SUCCESS', payload: data.user });
         return data;
     };
@@ -60,13 +52,16 @@ export function AuthProvider({ children }) {
     const register = async (name, email, password) => {
         dispatch({ type: 'AUTH_LOADING' });
         const { data } = await api.register({ name, email, password });
-        api.setToken(data.token);
         dispatch({ type: 'AUTH_SUCCESS', payload: data.user });
         return data;
     };
 
-    const logout = () => {
-        api.setToken(null);
+    const logout = async () => {
+        try {
+            await api.logout(); // server clears the cookie
+        } catch {
+            // ignore
+        }
         dispatch({ type: 'LOGOUT' });
     };
 
@@ -83,9 +78,7 @@ export function AuthProvider({ children }) {
 
 export function useAuth() {
     const context = useContext(AuthContext);
-    if (!context) {
-        throw new Error('useAuth must be used within an AuthProvider');
-    }
+    if (!context) throw new Error('useAuth must be used within an AuthProvider');
     return context;
 }
 
