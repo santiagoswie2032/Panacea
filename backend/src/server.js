@@ -7,6 +7,7 @@ const rateLimit = require('express-rate-limit');
 const path = require('path');
 
 const config = require('./config/env');
+const connectDB = require('./config/database');
 const errorHandler = require('./middlewares/errorHandler');
 
 // Routes
@@ -67,12 +68,17 @@ app.get('/api/health', (req, res) => {
 // Error handler
 app.use(errorHandler);
 
-// Start server
-app.listen(config.port, () => {
-    console.log(`\n🏥  Panacea API Server`);
-    console.log(`   Mode    : ${config.nodeEnv}`);
-    console.log(`   Port    : ${config.port}`);
-    console.log(`   URL     : http://localhost:${config.port}`);
-    console.log(`   Frontend: ${config.frontendUrl}`);
-    console.log(`   Storage : JSON file (no database)\n`);
+// Connect to database and start server
+connectDB().then(() => {
+    app.listen(config.port, () => {
+        console.log(`\n🏥  Panacea API Server`);
+        console.log(`   Mode    : ${config.nodeEnv}`);
+        console.log(`   Port    : ${config.port}`);
+        console.log(`   URL     : http://localhost:${config.port}`);
+        console.log(`   Frontend: ${config.frontendUrl}`);
+        console.log(`   Database: MongoDB\n`);
+    });
+}).catch(error => {
+    console.error('Failed to start server:', error);
+    process.exit(1);
 });
