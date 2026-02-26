@@ -1,12 +1,13 @@
 import { NavLink, useLocation } from 'react-router-dom';
+import Icon from './Icon';
 import './Navbar.css';
 
 const navItems = [
-    { path: '/', icon: '🏠', label: 'Home' },
-    { path: '/medications', icon: '💊', label: 'Meds' },
-    { path: '/documents', icon: '📁', label: 'Docs' },
-    { path: '/doctors', icon: '👨‍⚕️', label: 'Doctors' },
-    { path: '/profile', icon: '👤', label: 'Profile' },
+    { path: '/', icon: 'home', label: 'Home' },
+    { path: '/medications', icon: 'pill', label: 'Meds' },
+    { path: '/documents', icon: 'folder', label: 'Docs' },
+    { path: '/doctors', icon: 'stethoscope', label: 'Doctors' },
+    { path: '/profile', icon: 'user', label: 'Profile' },
 ];
 
 export default function Navbar() {
@@ -17,7 +18,7 @@ export default function Navbar() {
             {/* Top header bar */}
             <header className="top-bar">
                 <NavLink to="/" className="top-bar__brand">
-                    <span className="top-bar__logo">⚕️</span>
+                    <Icon name="plusCircle" size={22} color="var(--color-primary)" />
                     <span className="top-bar__title">Panacea</span>
                 </NavLink>
                 <NavLink to="/emergency" className="sos-button" aria-label="Emergency SOS">
@@ -36,7 +37,13 @@ export default function Navbar() {
                         }
                         end={item.path === '/'}
                     >
-                        <span className="bottom-nav__icon">{item.icon}</span>
+                        <span className="bottom-nav__icon">
+                            <Icon
+                                name={item.icon}
+                                size={20}
+                                color={location.pathname === item.path ? 'var(--color-primary)' : 'currentColor'}
+                            />
+                        </span>
                         <span className="bottom-nav__label">{item.label}</span>
                         {location.pathname === item.path && (
                             <span className="bottom-nav__indicator" />

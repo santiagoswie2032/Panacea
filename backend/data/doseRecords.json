@@ -38,5 +38,23 @@
     "createdAt": "2026-02-26T15:49:57.047Z",
     "takenAt": "2026-02-26T17:57:59.616Z",
     "updatedAt": "2026-02-26T17:57:59.616Z"
+  },
+  {
+    "_id": "b3263f15-04e5-4d5b-8f44-845f4a771a2e",
+    "userId": "369c0522-5bdc-4493-a0b1-ec7d91c4fa60",
+    "medicationId": "b629e477-bd27-45c4-bd55-988e77ec987b",
+    "scheduledTime": "08:00",
+    "date": "2026-02-26",
+    "status": "upcoming",
+    "createdAt": "2026-02-26T19:09:20.053Z"
+  },
+  {
+    "_id": "04e6fb6c-7ee4-4815-90e8-bcbbffb6466a",
+    "userId": "369c0522-5bdc-4493-a0b1-ec7d91c4fa60",
+    "medicationId": "b629e477-bd27-45c4-bd55-988e77ec987b",
+    "scheduledTime": "20:00",
+    "date": "2026-02-26",
+    "status": "upcoming",
+    "createdAt": "2026-02-26T19:09:20.061Z"
   }
 ]

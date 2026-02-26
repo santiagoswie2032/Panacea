@@ -92,5 +92,21 @@
     "active": true,
     "createdAt": "2026-02-26T15:49:56.972Z",
     "updatedAt": "2026-02-26T17:57:59.617Z"
+  },
+  {
+    "_id": "b629e477-bd27-45c4-bd55-988e77ec987b",
+    "userId": "369c0522-5bdc-4493-a0b1-ec7d91c4fa60",
+    "name": "aspirin",
+    "dosage": "50mg",
+    "timings": [
+      "08:00",
+      "20:00"
+    ],
+    "totalStock": 29,
+    "remainingStock": 29,
+    "instructions": "after meals",
+    "active": true,
+    "createdAt": "2026-02-26T19:09:20.023Z",
+    "updatedAt": "2026-02-26T19:09:20.023Z"
   }
 ]
