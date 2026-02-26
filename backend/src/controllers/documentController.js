@@ -1,4 +1,4 @@
-const Document = require('../models/Document');
+const documentStore = require('../config/documentStore');
 const path = require('path');
 const fs = require('fs');
 const config = require('../config/env');
@@ -7,11 +7,10 @@ const config = require('../config/env');
 exports.getAll = async (req, res, next) => {
     try {
         const { category } = req.query;
-        const filter = { userId: req.userId };
-        if (category) filter.category = category;
-
-        const documents = await Document.find(filter).sort({ createdAt: -1 });
-        res.json({ success: true, data: documents });
+        const documents = documentStore.find({ userId: req.userId });
+        const filtered = category ? documents.filter((d) => d.category === category) : documents;
+        filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        res.json({ success: true, data: filtered });
     } catch (error) {
         next(error);
     }
@@ -36,7 +35,7 @@ exports.upload = async (req, res, next) => {
             });
         }
 
-        const document = await Document.create({
+        const document = documentStore.create({
             userId: req.userId,
             name,
             category,
@@ -57,11 +56,7 @@ exports.rename = async (req, res, next) => {
     try {
         const { name } = req.body;
 
-        const document = await Document.findOneAndUpdate(
-            { _id: req.params.id, userId: req.userId },
-            { name },
-            { new: true }
-        );
+        const document = documentStore.findByIdAndUpdate(req.params.id, { name });
 
         if (!document) {
             return res.status(404).json({
@@ -79,10 +74,7 @@ exports.rename = async (req, res, next) => {
 // Delete document
 exports.remove = async (req, res, next) => {
     try {
-        const document = await Document.findOneAndDelete({
-            _id: req.params.id,
-            userId: req.userId,
-        });
+        const document = documentStore.findByIdAndDelete(req.params.id);
 
         if (!document) {
             return res.status(404).json({
@@ -110,10 +102,7 @@ exports.remove = async (req, res, next) => {
 // Download / Preview document
 exports.download = async (req, res, next) => {
     try {
-        const document = await Document.findOne({
-            _id: req.params.id,
-            userId: req.userId,
-        });
+        const document = documentStore.findById(req.params.id);
 
         if (!document) {
             return res.status(404).json({

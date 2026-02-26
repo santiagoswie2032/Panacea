@@ -3,7 +3,16 @@
 }
 
 .med-card--inactive {
-    opacity: 0.5;
+    opacity: 0.6;
+    background: #F3F4F6 !important;
+}
+
+.med-card--inactive .med-card__name {
+    color: #374151;
+}
+
+.med-card--inactive .med-card__dosage {
+    color: #6B7280;
 }
 
 .med-card__header {

@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const userStore = require('../config/userStore');
 const config = require('../config/env');
 
 // Save push subscription
@@ -13,7 +13,7 @@ exports.subscribe = async (req, res, next) => {
             });
         }
 
-        await User.findByIdAndUpdate(req.userId, {
+        userStore.updateById(req.userId, {
             pushSubscription: subscription,
         });
 
@@ -27,14 +27,14 @@ exports.subscribe = async (req, res, next) => {
 exports.getVapidKey = async (req, res) => {
     res.json({
         success: true,
-        data: { publicKey: config.vapid.publicKey },
+        data: { publicKey: config.vapid?.publicKey || 'default-public-key' },
     });
 };
 
 // Unsubscribe from push
 exports.unsubscribe = async (req, res, next) => {
     try {
-        await User.findByIdAndUpdate(req.userId, {
+        userStore.updateById(req.userId, {
             pushSubscription: null,
         });
 
