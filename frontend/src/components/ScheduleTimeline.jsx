@@ -1,3 +1,4 @@
+import { CheckCircle, XCircle, Bell, SkipForward, ClipboardList, Check } from 'lucide-react';
 import './ScheduleTimeline.css';
 
 function formatTime12(time24) {
@@ -8,17 +9,17 @@ function formatTime12(time24) {
 }
 
 const STATUS_CONFIG = {
-    taken: { emoji: '✅', label: 'Taken', className: 'taken' },
-    missed: { emoji: '❌', label: 'Missed', className: 'missed' },
-    upcoming: { emoji: '🔔', label: 'Upcoming', className: 'upcoming' },
-    skipped: { emoji: '⏭️', label: 'Skipped', className: 'missed' },
+    taken: { icon: <CheckCircle size={16} />, label: 'Taken', className: 'taken' },
+    missed: { icon: <XCircle size={16} />, label: 'Missed', className: 'missed' },
+    upcoming: { icon: <Bell size={16} />, label: 'Upcoming', className: 'upcoming' },
+    skipped: { icon: <SkipForward size={16} />, label: 'Skipped', className: 'missed' },
 };
 
 export default function ScheduleTimeline({ schedule, onTakeDose, loading }) {
     if (!schedule || schedule.length === 0) {
         return (
             <div className="empty-state">
-                <div className="empty-state__icon">📋</div>
+                <div className="empty-state__icon"><ClipboardList size={48} /></div>
                 <p className="empty-state__title">No medications scheduled</p>
                 <p className="empty-state__text">Add medications to see your daily schedule here</p>
             </div>
@@ -35,7 +36,7 @@ export default function ScheduleTimeline({ schedule, onTakeDose, loading }) {
                     <div key={`${dose.medicationId}-${dose.scheduledTime}-${index}`} className="timeline__item">
                         <div className="timeline__line">
                             <div className={`timeline__dot timeline__dot--${config.className}`}>
-                                <span>{config.emoji}</span>
+                                <span>{config.icon}</span>
                             </div>
                             {index < schedule.length - 1 && <div className="timeline__connector" />}
                         </div>
@@ -62,7 +63,7 @@ export default function ScheduleTimeline({ schedule, onTakeDose, loading }) {
                                         onClick={() => onTakeDose(dose)}
                                         disabled={loading}
                                     >
-                                        {loading ? <span className="spinner spinner--sm" /> : '✓ Take Now'}
+                                        {loading ? <span className="spinner spinner--sm" /> : <><Check size={16} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Take Now</>}
                                     </button>
                                 )}
 
@@ -84,6 +85,6 @@ export default function ScheduleTimeline({ schedule, onTakeDose, loading }) {
                     </div>
                 );
             })}
-        </div>
+        </div >
     );
 }

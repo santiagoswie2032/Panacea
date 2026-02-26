@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '../context/ToastContext';
 import api from '../services/api';
+import { AlertTriangle, Pill, X } from 'lucide-react';
 import MedicationCard from '../components/MedicationCard';
 import MedicationForm from '../components/MedicationForm';
 import './Medications.css';
@@ -97,7 +98,7 @@ export default function Medications() {
                 {[
                     { key: 'all', label: 'All' },
                     { key: 'active', label: 'Active' },
-                    { key: 'low-stock', label: '⚠️ Low Stock' },
+                    { key: 'low-stock', label: <><AlertTriangle size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> Low Stock</> },
                 ].map((f) => (
                     <button
                         key={f.key}
@@ -112,7 +113,7 @@ export default function Medications() {
             {/* Medication List */}
             {filtered.length === 0 ? (
                 <div className="empty-state">
-                    <div className="empty-state__icon">💊</div>
+                    <div className="empty-state__icon"><Pill size={48} /></div>
                     <p className="empty-state__title">No medications found</p>
                     <p className="empty-state__text">
                         {filter === 'all'
@@ -139,7 +140,7 @@ export default function Medications() {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h2 className="heading-3">Add Medication</h2>
-                            <button className="modal-close" onClick={() => setShowForm(false)}>✕</button>
+                            <button className="modal-close" onClick={() => setShowForm(false)}><X size={24} /></button>
                         </div>
                         <MedicationForm onSubmit={handleAdd} onCancel={() => setShowForm(false)} />
                     </div>
@@ -152,7 +153,7 @@ export default function Medications() {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h2 className="heading-3">Edit Medication</h2>
-                            <button className="modal-close" onClick={() => setEditingMed(null)}>✕</button>
+                            <button className="modal-close" onClick={() => setEditingMed(null)}><X size={24} /></button>
                         </div>
                         <MedicationForm
                             medication={editingMed}

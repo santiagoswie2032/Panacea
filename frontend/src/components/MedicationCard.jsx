@@ -1,3 +1,4 @@
+import { Pencil, Trash2, Clock, Clipboard, AlertTriangle } from 'lucide-react';
 import './MedicationCard.css';
 
 function formatTime12(time24) {
@@ -26,14 +27,14 @@ export default function MedicationCard({ medication, onEdit, onDelete }) {
                         onClick={() => onEdit(medication)}
                         aria-label="Edit medication"
                     >
-                        ✏️
+                        <Pencil size={16} />
                     </button>
                     <button
                         className="med-card__action-btn med-card__action-btn--delete"
                         onClick={() => onDelete(medication._id)}
                         aria-label="Delete medication"
                     >
-                        🗑️
+                        <Trash2 size={16} />
                     </button>
                 </div>
             </div>
@@ -41,13 +42,13 @@ export default function MedicationCard({ medication, onEdit, onDelete }) {
             <div className="med-card__timings">
                 {timings.map((time) => (
                     <span key={time} className="med-card__time-chip">
-                        🕐 {formatTime12(time)}
+                        <Clock size={14} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> {formatTime12(time)}
                     </span>
                 ))}
             </div>
 
             {instructions && (
-                <p className="med-card__instructions">📋 {instructions}</p>
+                <p className="med-card__instructions"><Clipboard size={14} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> {instructions}</p>
             )}
 
             <div className="med-card__stock">
@@ -66,7 +67,7 @@ export default function MedicationCard({ medication, onEdit, onDelete }) {
                 </div>
                 {isLow && (
                     <div className="badge badge--warning mt-2">
-                        ⚠️ Low stock — refill soon
+                        <AlertTriangle size={14} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> Low stock — refill soon
                     </div>
                 )}
             </div>

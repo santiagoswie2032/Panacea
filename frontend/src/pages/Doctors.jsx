@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Activity, Microscope, HeartPulse, Brain } from 'lucide-react';
 import './Doctors.css';
 
 const DOCTORS = [
@@ -11,7 +12,7 @@ const DOCTORS = [
         qualification: 'MD, DMRD',
         experience: '15 years',
         email: 'rajesh.kumar@apollohospitals.com',
-        avatar: '👨‍⚕️',
+        avatar: <Activity size={48} />,
     },
     {
         _id: 'doc2',
@@ -22,7 +23,7 @@ const DOCTORS = [
         qualification: 'MD Pathology, MBBS',
         experience: '12 years',
         email: 'sanjay.mishra@apollodiagnostics.com',
-        avatar: '👨‍⚕️',
+        avatar: <Microscope size={48} />,
     },
     {
         _id: 'doc3',
@@ -33,7 +34,7 @@ const DOCTORS = [
         qualification: 'DM Cardiology, MD',
         experience: '18 years',
         email: 'priya.sharma@maxhealthcare.com',
-        avatar: '👩‍⚕️',
+        avatar: <HeartPulse size={48} />,
     },
     {
         _id: 'doc4',
@@ -44,7 +45,7 @@ const DOCTORS = [
         qualification: 'DM Neurology, MD',
         experience: '14 years',
         email: 'arun.patel@fortishealthcare.com',
-        avatar: '👨‍⚕️',
+        avatar: <Brain size={48} />,
     },
 ];
 

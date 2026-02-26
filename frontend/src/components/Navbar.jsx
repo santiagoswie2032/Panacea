@@ -1,12 +1,13 @@
 import { NavLink, useLocation } from 'react-router-dom';
+import { Home, Pill, FolderOpen, Stethoscope, User, HeartPulse } from 'lucide-react';
 import './Navbar.css';
 
 const navItems = [
-    { path: '/', icon: '🏠', label: 'Home' },
-    { path: '/medications', icon: '💊', label: 'Meds' },
-    { path: '/documents', icon: '📁', label: 'Docs' },
-    { path: '/doctors', icon: '👨‍⚕️', label: 'Doctors' },
-    { path: '/profile', icon: '👤', label: 'Profile' },
+    { path: '/', icon: <Home size={24} />, label: 'Home' },
+    { path: '/medications', icon: <Pill size={24} />, label: 'Meds' },
+    { path: '/documents', icon: <FolderOpen size={24} />, label: 'Docs' },
+    { path: '/doctors', icon: <Stethoscope size={24} />, label: 'Doctors' },
+    { path: '/profile', icon: <User size={24} />, label: 'Profile' },
 ];
 
 export default function Navbar() {
@@ -17,7 +18,7 @@ export default function Navbar() {
             {/* Top header bar */}
             <header className="top-bar">
                 <NavLink to="/" className="top-bar__brand">
-                    <span className="top-bar__logo">⚕️</span>
+                    <span className="top-bar__logo"><HeartPulse size={24} /></span>
                     <span className="top-bar__title">Panacea</span>
                 </NavLink>
                 <NavLink to="/emergency" className="sos-button" aria-label="Emergency SOS">

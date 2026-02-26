@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
+import { User, Mail, Lock, Eye, EyeOff, ArrowRight, HeartPulse, Database, Pill, FileText } from 'lucide-react';
 import './Login.css';
 
 export default function Login() {
@@ -27,10 +28,10 @@ export default function Login() {
         try {
             if (isLogin) {
                 await login(form.email, form.password);
-                toast.success('Welcome back! 👋');
+                toast.success('Welcome back!');
             } else {
                 await register(form.name, form.email, form.password);
-                toast.success('Account created successfully! 🎉');
+                toast.success('Account created successfully!');
             }
         } catch (error) {
             toast.error(error.message);
@@ -52,7 +53,7 @@ export default function Login() {
                 {/* Brand header */}
                 <div className="login-header">
                     <div className="login-logo">
-                        <span className="login-logo-icon">⚕</span>
+                        <span className="login-logo-icon"><HeartPulse size={32} /></span>
                         <div className="login-logo-ring" />
                     </div>
                     <h1 className="login-title">Panacea</h1>
@@ -89,7 +90,7 @@ export default function Login() {
                             <div className="form-group">
                                 <label className="form-label" htmlFor="login-name">Full Name</label>
                                 <div className="input-wrapper">
-                                    <span className="input-icon">👤</span>
+                                    <span className="input-icon"><User size={20} /></span>
                                     <input
                                         id="login-name"
                                         className="form-input form-input--icon"
@@ -107,7 +108,7 @@ export default function Login() {
                         <div className="form-group">
                             <label className="form-label" htmlFor="login-email">Email Address</label>
                             <div className="input-wrapper">
-                                <span className="input-icon">✉️</span>
+                                <span className="input-icon"><Mail size={20} /></span>
                                 <input
                                     id="login-email"
                                     className="form-input form-input--icon"
@@ -124,7 +125,7 @@ export default function Login() {
                         <div className="form-group">
                             <label className="form-label" htmlFor="login-password">Password</label>
                             <div className="input-wrapper">
-                                <span className="input-icon">🔒</span>
+                                <span className="input-icon"><Lock size={20} /></span>
                                 <input
                                     id="login-password"
                                     className="form-input form-input--icon form-input--padded-right"
@@ -143,7 +144,7 @@ export default function Login() {
                                     aria-label={showPassword ? 'Hide password' : 'Show password'}
                                     tabIndex={-1}
                                 >
-                                    {showPassword ? '🙈' : '👁️'}
+                                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                                 </button>
                             </div>
                         </div>
@@ -157,19 +158,19 @@ export default function Login() {
                             {loading ? (
                                 <span className="spinner spinner--sm" />
                             ) : isLogin ? (
-                                <>Sign In &nbsp;→</>
+                                <>Sign In &nbsp;<ArrowRight size={16} style={{ verticalAlign: 'middle' }} /></>
                             ) : (
-                                <>Create Account &nbsp;→</>
+                                <>Create Account &nbsp;<ArrowRight size={16} style={{ verticalAlign: 'middle' }} /></>
                             )}
                         </button>
                     </form>
 
                     {/* Features strip */}
                     <div className="login-features">
-                        <span className="login-feature">🔒 Secure Auth</span>
-                        <span className="login-feature">💾 Local Storage</span>
-                        <span className="login-feature">💊 Medications</span>
-                        <span className="login-feature">📄 Documents</span>
+                        <span className="login-feature"><Lock size={12} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Secure Auth</span>
+                        <span className="login-feature"><Database size={12} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Local Storage</span>
+                        <span className="login-feature"><Pill size={12} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Medications</span>
+                        <span className="login-feature"><FileText size={12} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Documents</span>
                     </div>
                 </div>
             </div>

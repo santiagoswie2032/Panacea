@@ -1,15 +1,16 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '../context/ToastContext';
 import api from '../services/api';
+import { FolderOpen, Bone, Brain, Heart, FileText, Microscope, File, Lock, Eye, Pencil, Trash2, X, UploadCloud } from 'lucide-react';
 import './Documents.css';
 
 const CATEGORIES = [
-    { key: '', label: 'All', icon: '📂' },
-    { key: 'xray', label: 'X-Rays', icon: '🦴' },
-    { key: 'ctscan', label: 'CT Scans', icon: '🧠' },
-    { key: 'mri', label: 'MRI', icon: '🫀' },
-    { key: 'prescription', label: 'Prescriptions', icon: '📝' },
-    { key: 'labreport', label: 'Lab Reports', icon: '🔬' },
+    { key: '', label: 'All', icon: <FolderOpen size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> },
+    { key: 'xray', label: 'X-Rays', icon: <Bone size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> },
+    { key: 'ctscan', label: 'CT Scans', icon: <Brain size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> },
+    { key: 'mri', label: 'MRI', icon: <Heart size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> },
+    { key: 'prescription', label: 'Prescriptions', icon: <FileText size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> },
+    { key: 'labreport', label: 'Lab Reports', icon: <Microscope size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> },
 ];
 
 const DUMMY_DOCUMENTS = [
@@ -72,14 +73,14 @@ export default function Documents() {
             if (data && data.length > 0) {
                 setDocuments(data);
             } else {
-                const filtered = activeCategory 
+                const filtered = activeCategory
                     ? DUMMY_DOCUMENTS.filter(doc => doc.category === activeCategory)
                     : DUMMY_DOCUMENTS;
                 setDocuments(filtered);
             }
         } catch (error) {
             // Use dummy data on error
-            const filtered = activeCategory 
+            const filtered = activeCategory
                 ? DUMMY_DOCUMENTS.filter(doc => doc.category === activeCategory)
                 : DUMMY_DOCUMENTS;
             setDocuments(filtered);
@@ -143,7 +144,7 @@ export default function Documents() {
 
     const getCategoryIcon = (cat) => {
         const found = CATEGORIES.find((c) => c.key === cat);
-        return found?.icon || '📄';
+        return found?.icon || <File size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} />;
     };
 
     if (loading) {
@@ -158,14 +159,14 @@ export default function Documents() {
     return (
         <div className="documents-page">
             <div className="section-header">
-                <h1 className="heading-2">📄 Medical Documents</h1>
+                <h1 className="heading-2"><File size={32} style={{ verticalAlign: 'middle', marginRight: '8px' }} /> Medical Documents</h1>
                 <button className="btn btn--primary btn--sm" onClick={() => setShowUpload(true)}>
                     + Upload Document
                 </button>
             </div>
 
             <p className="docs-privacy-note">
-                🔒 Your documents are stored securely and only accessible to you
+                <Lock size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> Your documents are stored securely and only accessible to you
             </p>
 
             {/* Category tabs */}
@@ -184,7 +185,7 @@ export default function Documents() {
             {/* Document Grid */}
             {documents.length === 0 ? (
                 <div className="empty-state">
-                    <div className="empty-state__icon">📁</div>
+                    <div className="empty-state__icon"><FolderOpen size={48} /></div>
                     <p className="empty-state__title">No documents yet</p>
                     <p className="empty-state__text">Upload your medical documents to keep them organized and accessible</p>
                 </div>
@@ -209,7 +210,7 @@ export default function Documents() {
                                             Save
                                         </button>
                                         <button className="btn btn--ghost btn--sm" onClick={() => setRenamingDoc(null)}>
-                                            ✕
+                                            <X size={16} />
                                         </button>
                                     </div>
                                 ) : (
@@ -229,21 +230,21 @@ export default function Documents() {
                                     className="doc-card__btn"
                                     title="Preview"
                                 >
-                                    👁️
+                                    <Eye size={16} />
                                 </a>
                                 <button
                                     className="doc-card__btn"
                                     onClick={() => { setRenamingDoc(doc._id); setRenameValue(doc.name); }}
                                     title="Rename"
                                 >
-                                    ✏️
+                                    <Pencil size={16} />
                                 </button>
                                 <button
                                     className="doc-card__btn doc-card__btn--delete"
                                     onClick={() => handleDelete(doc._id)}
                                     title="Delete"
                                 >
-                                    🗑️
+                                    <Trash2 size={16} />
                                 </button>
                             </div>
                         </div>
@@ -257,7 +258,7 @@ export default function Documents() {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h2 className="heading-3">Upload Document</h2>
-                            <button className="modal-close" onClick={() => setShowUpload(false)}>✕</button>
+                            <button className="modal-close" onClick={() => setShowUpload(false)}><X size={24} /></button>
                         </div>
 
                         <form onSubmit={handleUpload}>
@@ -306,13 +307,13 @@ export default function Documents() {
                                     <label htmlFor="doc-file" className="doc-upload-zone__label">
                                         {uploadForm.file ? (
                                             <>
-                                                <span>📄</span>
+                                                <File size={16} />
                                                 <span>{uploadForm.file.name}</span>
                                                 <span className="text-small text-muted">{formatFileSize(uploadForm.file.size)}</span>
                                             </>
                                         ) : (
                                             <>
-                                                <span className="doc-upload-zone__icon">📤</span>
+                                                <span className="doc-upload-zone__icon"><UploadCloud size={24} /></span>
                                                 <span>Tap to select a file</span>
                                                 <span className="text-small text-muted">PDF, JPEG, PNG • Max 10MB</span>
                                             </>

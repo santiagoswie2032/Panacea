@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import api from '../services/api';
 import notificationService from '../services/notifications';
+import { X, AlertTriangle } from 'lucide-react';
 import './Profile.css';
 
 const BLOOD_GROUPS = ['', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
@@ -237,7 +238,7 @@ export default function Profile() {
                                     onClick={() => handleRemoveCondition(index)}
                                     aria-label={`Remove ${condition}`}
                                 >
-                                    ✕
+                                    <X size={16} />
                                 </button>
                             </span>
                         ))}
@@ -283,7 +284,7 @@ export default function Profile() {
                     </div>
                     {notifStatus === 'denied' && (
                         <p className="text-small" style={{ color: 'var(--color-warning-light)', marginTop: 'var(--space-2)' }}>
-                            ⚠️ Notifications are blocked. Please enable them in your browser settings.
+                            <AlertTriangle size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> Notifications are blocked. Please enable them in your browser settings.
                         </p>
                     )}
                 </div>

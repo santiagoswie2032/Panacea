@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
+import { Ambulance, ShieldAlert, Siren, Skull, LifeBuoy, Brain, User as UserIcon, Phone, ChevronRight, AlertTriangle, Mail } from 'lucide-react';
 import './Emergency.css';
 
 // Emergency hotline numbers
 const EMERGENCY_NUMBERS = [
-    { id: 1, name: 'Ambulance', number: '102', icon: '🚑', color: 'primary' },
-    { id: 2, name: 'Police', number: '100', icon: '👮', color: 'danger' },
-    { id: 3, name: 'Emergency Services', number: '112', icon: '🚨', color: 'warning' },
-    { id: 4, name: 'Poison Control', number: '1800-11-2131', icon: '☠️', color: 'danger' },
-    { id: 5, name: 'Disaster Management', number: '108', icon: '⛑️', color: 'warning' },
-    { id: 6, name: 'Mental Health Helpline', number: '9152987821', icon: '🧠', color: 'info' },
+    { id: 1, name: 'Ambulance', number: '102', icon: <Ambulance size={24} />, color: 'primary' },
+    { id: 2, name: 'Police', number: '100', icon: <ShieldAlert size={24} />, color: 'danger' },
+    { id: 3, name: 'Emergency Services', number: '112', icon: <Siren size={24} />, color: 'warning' },
+    { id: 4, name: 'Poison Control', number: '1800-11-2131', icon: <Skull size={24} />, color: 'danger' },
+    { id: 5, name: 'Disaster Management', number: '108', icon: <LifeBuoy size={24} />, color: 'warning' },
+    { id: 6, name: 'Mental Health Helpline', number: '9152987821', icon: <Brain size={24} />, color: 'info' },
 ];
 
 // Dummy family members
@@ -21,7 +22,7 @@ const DUMMY_FAMILY_MEMBERS = [
         relationship: 'Spouse',
         phone: '+91-9876543210',
         email: 'sarah.j@email.com',
-        icon: '👩',
+        icon: <UserIcon size={32} />,
         isPrimary: true,
     },
     {
@@ -30,7 +31,7 @@ const DUMMY_FAMILY_MEMBERS = [
         relationship: 'Son',
         phone: '+91-9876543211',
         email: 'michael.j@email.com',
-        icon: '👨',
+        icon: <UserIcon size={32} />,
         isPrimary: false,
     },
     {
@@ -39,7 +40,7 @@ const DUMMY_FAMILY_MEMBERS = [
         relationship: 'Daughter',
         phone: '+91-9876543212',
         email: 'emily.j@email.com',
-        icon: '👧',
+        icon: <UserIcon size={32} />,
         isPrimary: false,
     },
     {
@@ -48,7 +49,7 @@ const DUMMY_FAMILY_MEMBERS = [
         relationship: 'Brother',
         phone: '+91-9876543213',
         email: 'robert.j@email.com',
-        icon: '👨',
+        icon: <UserIcon size={32} />,
         isPrimary: false,
     },
 ];
@@ -97,7 +98,7 @@ export default function Emergency() {
             {/* Emergency header */}
             <div className="emergency-header">
                 <div className="emergency-header__pulse" />
-                <div className="emergency-header__icon">🆘</div>
+                <div className="emergency-header__icon"><LifeBuoy size={48} /></div>
                 <h1 className="emergency-header__title">Emergency</h1>
                 <p className="emergency-header__subtitle">Quick access to emergency services</p>
             </div>
@@ -109,7 +110,7 @@ export default function Emergency() {
                     className="emergency-primary-btn"
                     aria-label={`Call ${emergencyInfo.emergencyContactName || 'emergency contact'}`}
                 >
-                    <span className="emergency-primary-btn__icon">📞</span>
+                    <span className="emergency-primary-btn__icon"><Phone size={24} /></span>
                     <div className="emergency-primary-btn__content">
                         <span className="emergency-primary-btn__label">Primary Contact</span>
                         <span className="emergency-primary-btn__name">
@@ -119,12 +120,12 @@ export default function Emergency() {
                             {emergencyInfo.emergencyContact}
                         </span>
                     </div>
-                    <span className="emergency-primary-btn__arrow">›</span>
+                    <span className="emergency-primary-btn__arrow"><ChevronRight size={24} /></span>
                 </a>
             ) : (
                 <div className="emergency-no-contact glass-card">
                     <p className="emergency-no-contact__text">
-                        ⚠️ No emergency contact set up
+                        <AlertTriangle size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> No emergency contact set up
                     </p>
                     <p className="text-small text-muted">
                         Go to Profile → Settings to add an emergency contact
@@ -134,7 +135,7 @@ export default function Emergency() {
 
             {/* Emergency Hotlines */}
             <section className="emergency-section">
-                <h2 className="emergency-section__title">📞 Emergency Hotlines</h2>
+                <h2 className="emergency-section__title"><Phone size={20} style={{ verticalAlign: 'middle', marginRight: '8px' }} /> Emergency Hotlines</h2>
                 <div className="emergency-grid">
                     {EMERGENCY_NUMBERS.map((service) => (
                         <a
@@ -154,7 +155,7 @@ export default function Emergency() {
 
             {/* Family Members */}
             <section className="emergency-section">
-                <h2 className="emergency-section__title">👨‍👩‍👧‍👦 Family Members</h2>
+                <h2 className="emergency-section__title"><UserIcon size={20} style={{ verticalAlign: 'middle', marginRight: '8px' }} /> Family Members</h2>
                 <div className="family-grid">
                     {familyMembers.map((member) => (
                         <div
@@ -175,14 +176,14 @@ export default function Emergency() {
                                     className="family-card__btn family-card__btn--call"
                                     title="Call"
                                 >
-                                    📞
+                                    <Phone size={16} />
                                 </a>
                                 <a
                                     href={`mailto:${member.email}`}
                                     className="family-card__btn family-card__btn--email"
                                     title="Email"
                                 >
-                                    ✉️
+                                    <Mail size={16} />
                                 </a>
                             </div>
                         </div>
@@ -192,7 +193,7 @@ export default function Emergency() {
 
             {/* User medical info */}
             <section className="emergency-section">
-                <h2 className="emergency-section__title">👤 Patient Information</h2>
+                <h2 className="emergency-section__title"><UserIcon size={20} style={{ verticalAlign: 'middle', marginRight: '8px' }} /> Patient Information</h2>
 
                 <div className="emergency-info__grid">
                     <div className="emergency-info__card glass-card">

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { X } from 'lucide-react';
 import './MedicationForm.css';
 
 const DEFAULT_TIMINGS = ['08:00', '14:00', '20:00'];
@@ -107,7 +108,7 @@ export default function MedicationForm({ medication, onSubmit, onCancel }) {
                                     onClick={() => removeTiming(index)}
                                     aria-label="Remove timing"
                                 >
-                                    ✕
+                                    <X size={16} />
                                 </button>
                             )}
                         </div>
