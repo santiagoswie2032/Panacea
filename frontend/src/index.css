@@ -125,6 +125,7 @@ html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
+  background: #000000;
 }
 
 body {
@@ -139,6 +140,8 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
 /* Ambient background gradient */

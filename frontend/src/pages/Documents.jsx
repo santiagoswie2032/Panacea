@@ -158,9 +158,9 @@ export default function Documents() {
     return (
         <div className="documents-page">
             <div className="section-header">
-                <h1 className="heading-2">Medical Documents</h1>
+                <h1 className="heading-2">📄 Medical Documents</h1>
                 <button className="btn btn--primary btn--sm" onClick={() => setShowUpload(true)}>
-                    + Upload
+                    + Upload Document
                 </button>
             </div>
 
