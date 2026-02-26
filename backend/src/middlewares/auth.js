@@ -1,13 +1,14 @@
 /**
  * Panacea — Auth Middleware
  * Reads JWT from httpOnly cookie first, then falls back to Authorization Bearer header.
+ * Validates JWT and fetches user from MongoDB.
  */
 
 const jwt = require('jsonwebtoken');
 const config = require('../config/env');
 const userStore = require('../config/userStore');
 
-const auth = (req, res, next) => {
+const auth = async (req, res, next) => {
     try {
         // 1. Try cookie
         let token = req.cookies && req.cookies.token;
@@ -25,14 +26,14 @@ const auth = (req, res, next) => {
         }
 
         const decoded = jwt.verify(token, config.jwt.secret);
-        const user = userStore.findById(decoded.userId);
+        const user = await userStore.findById(decoded.userId);
 
         if (!user) {
             return res.status(401).json({ success: false, message: 'User not found.' });
         }
 
         req.user = user;
-        req.userId = user.id;
+        req.userId = user._id;
         next();
     } catch (error) {
         if (error.name === 'TokenExpiredError') {

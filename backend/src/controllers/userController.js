@@ -26,7 +26,7 @@ exports.updateProfile = async (req, res, next) => {
             }
         });
 
-        const user = userStore.updateById(req.userId, updates);
+        const user = await userStore.updateById(req.userId, updates);
 
         res.json({ success: true, data: user });
     } catch (error) {
@@ -55,7 +55,7 @@ exports.updateEmergencyInfo = async (req, res, next) => {
     try {
         const { emergencyContact, emergencyContactName, bloodGroup, medicalConditions } = req.body;
 
-        const user = userStore.updateById(req.userId, {
+        const user = await userStore.updateById(req.userId, {
             emergencyContact,
             emergencyContactName,
             bloodGroup,
