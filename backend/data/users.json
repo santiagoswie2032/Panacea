@@ -12,5 +12,19 @@
     "email": "jigyanshsahu8@gmail.com",
     "password": "$2a$12$2SgXLbU0LWo/9nb8FWXgqeqRi0ql09.8NBDH3Y6zWk.r3JWzAblA2",
     "createdAt": "2026-02-26T14:10:09.282Z"
+  },
+  {
+    "id": "ef83a8ea-050d-4c80-bf91-6ffd91ca76fe",
+    "name": "santiago",
+    "email": "san5@gmail.com",
+    "password": "$2a$12$TyJ7.i1bUTR2q/dbnlmiXegZgJ2gwe/fCYynMBxtDMXLY2WcLZRNK",
+    "createdAt": "2026-02-26T15:07:45.857Z"
+  },
+  {
+    "id": "369c0522-5bdc-4493-a0b1-ec7d91c4fa60",
+    "name": "santiago",
+    "email": "san6@gmail.com",
+    "password": "$2a$12$l43y3o.kke6bZp7cfJfmteFpAjsjYgNvFIjcBboanxT.0FTveItx6",
+    "createdAt": "2026-02-26T19:04:50.142Z"
   }
 ]

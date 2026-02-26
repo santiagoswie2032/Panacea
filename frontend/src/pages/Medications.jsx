@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '../context/ToastContext';
 import api from '../services/api';
+import Icon from '../components/Icon';
 import MedicationCard from '../components/MedicationCard';
 import MedicationForm from '../components/MedicationForm';
 import './Medications.css';
@@ -89,6 +90,8 @@ export default function Medications() {
                     }}
                 >
                     + Add New
+                <button className="btn btn--primary btn--sm" onClick={() => setShowForm(true)}>
+                    <Icon name="plus" size={16} /> Add New
                 </button>
             </div>
 
@@ -97,13 +100,14 @@ export default function Medications() {
                 {[
                     { key: 'all', label: 'All' },
                     { key: 'active', label: 'Active' },
-                    { key: 'low-stock', label: '⚠️ Low Stock' },
+                    { key: 'low-stock', label: 'Low Stock', icon: 'alertTriangle' },
                 ].map((f) => (
                     <button
                         key={f.key}
                         className={`tab ${filter === f.key ? 'tab--active' : ''}`}
                         onClick={() => setFilter(f.key)}
                     >
+                        {f.icon && <Icon name={f.icon} size={12} style={{ marginRight: 4 }} />}
                         {f.label}
                     </button>
                 ))}
@@ -112,7 +116,9 @@ export default function Medications() {
             {/* Medication List */}
             {filtered.length === 0 ? (
                 <div className="empty-state">
-                    <div className="empty-state__icon">💊</div>
+                    <div className="empty-state__icon">
+                        <Icon name="pill" size={32} color="var(--color-text-muted)" />
+                    </div>
                     <p className="empty-state__title">No medications found</p>
                     <p className="empty-state__text">
                         {filter === 'all'
@@ -139,7 +145,9 @@ export default function Medications() {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h2 className="heading-3">Add Medication</h2>
-                            <button className="modal-close" onClick={() => setShowForm(false)}>✕</button>
+                            <button className="modal-close" onClick={() => setShowForm(false)}>
+                                <Icon name="x" size={18} />
+                            </button>
                         </div>
                         <MedicationForm onSubmit={handleAdd} onCancel={() => setShowForm(false)} />
                     </div>
@@ -152,7 +160,9 @@ export default function Medications() {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h2 className="heading-3">Edit Medication</h2>
-                            <button className="modal-close" onClick={() => setEditingMed(null)}>✕</button>
+                            <button className="modal-close" onClick={() => setEditingMed(null)}>
+                                <Icon name="x" size={18} />
+                            </button>
                         </div>
                         <MedicationForm
                             medication={editingMed}

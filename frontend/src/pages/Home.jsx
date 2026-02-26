@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import api from '../services/api';
+import Icon from '../components/Icon';
 import ScheduleTimeline from '../components/ScheduleTimeline';
 import MedicationForm from '../components/MedicationForm';
 import './Home.css';
@@ -49,7 +50,7 @@ export default function Home() {
                 scheduledTime: dose.scheduledTime,
                 date: dose.date,
             });
-            toast.success('Dose marked as taken! 💊');
+            toast.success('Dose marked as taken');
             await fetchData();
         } catch (error) {
             toast.error(error.message);
@@ -61,7 +62,7 @@ export default function Home() {
     const handleAddMedication = async (data) => {
         try {
             await api.createMedication(data);
-            toast.success('Medication added! 🎉');
+            toast.success('Medication added');
             setShowAddForm(false);
             await fetchData();
         } catch (error) {
@@ -128,7 +129,9 @@ export default function Home() {
                 <div className="home-alerts">
                     {lowStockMeds.map((med) => (
                         <div key={med._id} className="home-alert glass-card">
-                            <span className="home-alert__icon">⚠️</span>
+                            <span className="home-alert__icon">
+                                <Icon name="alertTriangle" size={18} color="var(--color-warning)" />
+                            </span>
                             <div>
                                 <p className="home-alert__title">Low stock: {med.name}</p>
                                 <p className="home-alert__text">
@@ -144,7 +147,7 @@ export default function Home() {
             <div className="section-header mt-6">
                 <h2 className="section-title">Today's Schedule</h2>
                 <button className="btn btn--primary btn--sm" onClick={() => setShowAddForm(true)}>
-                    + Add Med
+                    <Icon name="plus" size={16} /> Add Med
                 </button>
             </div>
 
@@ -161,7 +164,9 @@ export default function Home() {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h2 className="heading-3">Add Medication</h2>
-                            <button className="modal-close" onClick={() => setShowAddForm(false)}>✕</button>
+                            <button className="modal-close" onClick={() => setShowAddForm(false)}>
+                                <Icon name="x" size={18} />
+                            </button>
                         </div>
                         <MedicationForm
                             onSubmit={handleAddMedication}

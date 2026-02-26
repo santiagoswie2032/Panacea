@@ -124,7 +124,11 @@
 }
 
 .bottom-nav__icon {
-    font-size: 1.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
     transition: transform var(--transition-spring);
 }
 

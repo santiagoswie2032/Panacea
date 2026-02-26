@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Icon from './Icon';
 import './MedicationForm.css';
 
 const DEFAULT_TIMINGS = ['08:00', '14:00', '20:00'];
@@ -107,7 +108,7 @@ export default function MedicationForm({ medication, onSubmit, onCancel }) {
                                     onClick={() => removeTiming(index)}
                                     aria-label="Remove timing"
                                 >
-                                    ✕
+                                    <Icon name="x" size={12} />
                                 </button>
                             )}
                         </div>
@@ -118,7 +119,7 @@ export default function MedicationForm({ medication, onSubmit, onCancel }) {
                             className="btn btn--ghost btn--sm"
                             onClick={addTiming}
                         >
-                            + Add Time
+                            <Icon name="plus" size={14} /> Add Time
                         </button>
                     )}
                 </div>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
+import Icon from '../components/Icon';
 import './Login.css';
 
 export default function Login() {
@@ -27,10 +28,10 @@ export default function Login() {
         try {
             if (isLogin) {
                 await login(form.email, form.password);
-                toast.success('Welcome back! 👋');
+                toast.success('Welcome back!');
             } else {
                 await register(form.name, form.email, form.password);
-                toast.success('Account created successfully! 🎉');
+                toast.success('Account created successfully!');
             }
         } catch (error) {
             toast.error(error.message);
@@ -52,7 +53,9 @@ export default function Login() {
                 {/* Brand header */}
                 <div className="login-header">
                     <div className="login-logo">
-                        <span className="login-logo-icon">⚕</span>
+                        <span className="login-logo-icon">
+                            <Icon name="plusCircle" size={36} color="var(--color-primary)" />
+                        </span>
                         <div className="login-logo-ring" />
                     </div>
                     <h1 className="login-title">Panacea</h1>
@@ -89,7 +92,9 @@ export default function Login() {
                             <div className="form-group">
                                 <label className="form-label" htmlFor="login-name">Full Name</label>
                                 <div className="input-wrapper">
-                                    <span className="input-icon">👤</span>
+                                    <span className="input-icon">
+                                        <Icon name="user" size={16} />
+                                    </span>
                                     <input
                                         id="login-name"
                                         className="form-input form-input--icon"
@@ -107,7 +112,9 @@ export default function Login() {
                         <div className="form-group">
                             <label className="form-label" htmlFor="login-email">Email Address</label>
                             <div className="input-wrapper">
-                                <span className="input-icon">✉️</span>
+                                <span className="input-icon">
+                                    <Icon name="mail" size={16} />
+                                </span>
                                 <input
                                     id="login-email"
                                     className="form-input form-input--icon"
@@ -124,7 +131,9 @@ export default function Login() {
                         <div className="form-group">
                             <label className="form-label" htmlFor="login-password">Password</label>
                             <div className="input-wrapper">
-                                <span className="input-icon">🔒</span>
+                                <span className="input-icon">
+                                    <Icon name="lock" size={16} />
+                                </span>
                                 <input
                                     id="login-password"
                                     className="form-input form-input--icon form-input--padded-right"
@@ -143,7 +152,7 @@ export default function Login() {
                                     aria-label={showPassword ? 'Hide password' : 'Show password'}
                                     tabIndex={-1}
                                 >
-                                    {showPassword ? '🙈' : '👁️'}
+                                    <Icon name={showPassword ? 'eyeOff' : 'eye'} size={16} />
                                 </button>
                             </div>
                         </div>
@@ -157,19 +166,19 @@ export default function Login() {
                             {loading ? (
                                 <span className="spinner spinner--sm" />
                             ) : isLogin ? (
-                                <>Sign In &nbsp;→</>
+                                <>Sign In &nbsp;<Icon name="arrowRight" size={16} /></>
                             ) : (
-                                <>Create Account &nbsp;→</>
+                                <>Create Account &nbsp;<Icon name="arrowRight" size={16} /></>
                             )}
                         </button>
                     </form>
 
                     {/* Features strip */}
                     <div className="login-features">
-                        <span className="login-feature">🔒 Secure Auth</span>
-                        <span className="login-feature">💾 Local Storage</span>
-                        <span className="login-feature">💊 Medications</span>
-                        <span className="login-feature">📄 Documents</span>
+                        <span className="login-feature"><Icon name="lock" size={12} /> Secure Auth</span>
+                        <span className="login-feature"><Icon name="shield" size={12} /> Encrypted</span>
+                        <span className="login-feature"><Icon name="pill" size={12} /> Medications</span>
+                        <span className="login-feature"><Icon name="folder" size={12} /> Documents</span>
                     </div>
                 </div>
             </div>

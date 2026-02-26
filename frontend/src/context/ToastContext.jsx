@@ -1,6 +1,13 @@
 import { createContext, useContext, useState, useCallback } from 'react';
+import Icon from '../components/Icon';
 
 const ToastContext = createContext(null);
+
+const TOAST_ICONS = {
+    success: <Icon name="checkCircle" size={18} />,
+    error: <Icon name="xCircle" size={18} />,
+    info: <Icon name="info" size={18} />,
+};
 
 export function ToastProvider({ children }) {
     const [toasts, setToasts] = useState([]);
@@ -23,11 +30,7 @@ export function ToastProvider({ children }) {
             <div className="toast-container">
                 {toasts.map((toast) => (
                     <div key={toast.id} className={`toast toast--${toast.type}`}>
-                        <span>
-                            {toast.type === 'success' && '✅ '}
-                            {toast.type === 'error' && '❌ '}
-                            {toast.type === 'info' && 'ℹ️ '}
-                        </span>
+                        {TOAST_ICONS[toast.type]}
                         {toast.message}
                     </div>
                 ))}

@@ -1,15 +1,16 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '../context/ToastContext';
 import api from '../services/api';
+import Icon from '../components/Icon';
 import './Documents.css';
 
 const CATEGORIES = [
-    { key: '', label: 'All', icon: '📂' },
-    { key: 'xray', label: 'X-Rays', icon: '🦴' },
-    { key: 'ctscan', label: 'CT Scans', icon: '🧠' },
-    { key: 'mri', label: 'MRI', icon: '🫀' },
-    { key: 'prescription', label: 'Prescriptions', icon: '📝' },
-    { key: 'labreport', label: 'Lab Reports', icon: '🔬' },
+    { key: '', label: 'All', icon: 'folder' },
+    { key: 'xray', label: 'X-Rays', icon: 'scan' },
+    { key: 'ctscan', label: 'CT Scans', icon: 'scan' },
+    { key: 'mri', label: 'MRI', icon: 'activity' },
+    { key: 'prescription', label: 'Prescriptions', icon: 'fileText' },
+    { key: 'labreport', label: 'Lab Reports', icon: 'flask' },
 ];
 
 const DUMMY_DOCUMENTS = [
@@ -72,14 +73,14 @@ export default function Documents() {
             if (data && data.length > 0) {
                 setDocuments(data);
             } else {
-                const filtered = activeCategory 
+                const filtered = activeCategory
                     ? DUMMY_DOCUMENTS.filter(doc => doc.category === activeCategory)
                     : DUMMY_DOCUMENTS;
                 setDocuments(filtered);
             }
         } catch (error) {
             // Use dummy data on error
-            const filtered = activeCategory 
+            const filtered = activeCategory
                 ? DUMMY_DOCUMENTS.filter(doc => doc.category === activeCategory)
                 : DUMMY_DOCUMENTS;
             setDocuments(filtered);
@@ -143,7 +144,7 @@ export default function Documents() {
 
     const getCategoryIcon = (cat) => {
         const found = CATEGORIES.find((c) => c.key === cat);
-        return found?.icon || '📄';
+        return found?.icon || 'file';
     };
 
     if (loading) {
@@ -158,14 +159,18 @@ export default function Documents() {
     return (
         <div className="documents-page">
             <div className="section-header">
-                <h1 className="heading-2">📄 Medical Documents</h1>
+                <h1 className="heading-2">
+                    <Icon name="folder" size={22} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
+                    Medical Documents
+                </h1>
                 <button className="btn btn--primary btn--sm" onClick={() => setShowUpload(true)}>
-                    + Upload Document
+                    <Icon name="plus" size={16} /> Upload
                 </button>
             </div>
 
             <p className="docs-privacy-note">
-                🔒 Your documents are stored securely and only accessible to you
+                <Icon name="lock" size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
+                Your documents are stored securely and only accessible to you
             </p>
 
             {/* Category tabs */}
@@ -176,7 +181,7 @@ export default function Documents() {
                         className={`tab ${activeCategory === cat.key ? 'tab--active' : ''}`}
                         onClick={() => { setActiveCategory(cat.key); setLoading(true); }}
                     >
-                        {cat.icon} {cat.label}
+                        <Icon name={cat.icon} size={14} style={{ marginRight: 4 }} /> {cat.label}
                     </button>
                 ))}
             </div>
@@ -184,7 +189,9 @@ export default function Documents() {
             {/* Document Grid */}
             {documents.length === 0 ? (
                 <div className="empty-state">
-                    <div className="empty-state__icon">📁</div>
+                    <div className="empty-state__icon">
+                        <Icon name="folder" size={32} color="var(--color-text-muted)" />
+                    </div>
                     <p className="empty-state__title">No documents yet</p>
                     <p className="empty-state__text">Upload your medical documents to keep them organized and accessible</p>
                 </div>
@@ -193,7 +200,7 @@ export default function Documents() {
                     {documents.map((doc) => (
                         <div key={doc._id} className="doc-card glass-card">
                             <div className="doc-card__icon">
-                                {getCategoryIcon(doc.category)}
+                                <Icon name={getCategoryIcon(doc.category)} size={24} color="var(--color-primary)" />
                             </div>
                             <div className="doc-card__info">
                                 {renamingDoc === doc._id ? (
@@ -209,7 +216,7 @@ export default function Documents() {
                                             Save
                                         </button>
                                         <button className="btn btn--ghost btn--sm" onClick={() => setRenamingDoc(null)}>
-                                            ✕
+                                            <Icon name="x" size={14} />
                                         </button>
                                     </div>
                                 ) : (
@@ -229,21 +236,21 @@ export default function Documents() {
                                     className="doc-card__btn"
                                     title="Preview"
                                 >
-                                    👁️
+                                    <Icon name="eye" size={16} />
                                 </a>
                                 <button
                                     className="doc-card__btn"
                                     onClick={() => { setRenamingDoc(doc._id); setRenameValue(doc.name); }}
                                     title="Rename"
                                 >
-                                    ✏️
+                                    <Icon name="edit" size={16} />
                                 </button>
                                 <button
                                     className="doc-card__btn doc-card__btn--delete"
                                     onClick={() => handleDelete(doc._id)}
                                     title="Delete"
                                 >
-                                    🗑️
+                                    <Icon name="trash" size={16} />
                                 </button>
                             </div>
                         </div>
@@ -257,7 +264,9 @@ export default function Documents() {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h2 className="heading-3">Upload Document</h2>
-                            <button className="modal-close" onClick={() => setShowUpload(false)}>✕</button>
+                            <button className="modal-close" onClick={() => setShowUpload(false)}>
+                                <Icon name="x" size={18} />
+                            </button>
                         </div>
 
                         <form onSubmit={handleUpload}>
@@ -270,7 +279,7 @@ export default function Documents() {
                                 >
                                     {CATEGORIES.filter((c) => c.key).map((cat) => (
                                         <option key={cat.key} value={cat.key}>
-                                            {cat.icon} {cat.label}
+                                            {cat.label}
                                         </option>
                                     ))}
                                 </select>
@@ -306,13 +315,15 @@ export default function Documents() {
                                     <label htmlFor="doc-file" className="doc-upload-zone__label">
                                         {uploadForm.file ? (
                                             <>
-                                                <span>📄</span>
+                                                <Icon name="file" size={20} color="var(--color-primary)" />
                                                 <span>{uploadForm.file.name}</span>
                                                 <span className="text-small text-muted">{formatFileSize(uploadForm.file.size)}</span>
                                             </>
                                         ) : (
                                             <>
-                                                <span className="doc-upload-zone__icon">📤</span>
+                                                <span className="doc-upload-zone__icon">
+                                                    <Icon name="upload" size={28} color="var(--color-primary)" />
+                                                </span>
                                                 <span>Tap to select a file</span>
                                                 <span className="text-small text-muted">PDF, JPEG, PNG • Max 10MB</span>
                                             </>
