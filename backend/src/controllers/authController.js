@@ -9,9 +9,13 @@ const userStore = require('../config/userStore');
 const medicationStore = require('../config/medicationStore');
 const config = require('../config/env');
 
+// cookie configuration — Lax is fine for local dev where frontend
+// and backend share origin, but in production the frontend and backend
+// will often live on different domains.  In that case we must use
+// SameSite=None and secure cookies so browsers will accept them.
 const COOKIE_OPTIONS = {
     httpOnly: true,
-    sameSite: 'lax',
+    sameSite: config.nodeEnv === 'production' ? 'none' : 'lax',
     secure: config.nodeEnv === 'production',
     maxAge: config.jwt.cookieExpiresDays * 24 * 60 * 60 * 1000,
     path: '/',

@@ -41,6 +41,9 @@ Panacea/
 ```bash
 cd backend
 cp .env.example .env    # Configure your environment
+# make sure FRONTEND_URL points to whatever frontend domain you'll use
+# (e.g. https://your-app.vercel.app).  You can also provide a
+# comma-separated list if you need to allow multiple origins.
 npm install
 npm run dev             # Starts on :5000
 ```
@@ -49,6 +52,10 @@ npm run dev             # Starts on :5000
 ```bash
 cd frontend
 npm install
+# when deploying, set VITE_API_BASE to your backend URL (e.g.
+# https://panacea-backend.vercel.app).  If the backend lives in the
+# same Vercel project under `/api`, you can omit the variable because
+# our code will fall back to using the Vercel URL automatically.
 npm run dev             # Starts on :5173
 ```
 

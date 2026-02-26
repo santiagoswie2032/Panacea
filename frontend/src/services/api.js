@@ -4,7 +4,21 @@
  * Auth token management is handled entirely by the server-side cookie.
  */
 
-const API_BASE = '/api';
+// In development we proxy `/api` to the backend server, but once
+// the app is deployed the API may live on a different host.  The
+// Vite build system exposes environment variables prefixed with
+// `VITE_` under `import.meta.env`.
+//
+// On Vercel you should define VITE_API_BASE pointing at your
+// backend URL (e.g. https://panacea-backend.vercel.app).  Falling
+// back to '/api' keeps the local proxy behavior intact.
+// if a specific API base is provided via env var, use it; otherwise
+// look for VERCEL_URL (useful when backend is deployed as a serverless
+// function in the same Vercel project).  Falling back to '/api' keeps the
+// local dev proxy working.
+const API_BASE =
+    import.meta.env.VITE_API_BASE ||
+    (import.meta.env.VERCEL_URL ? `https://${import.meta.env.VERCEL_URL}` : '/api');
 
 class ApiService {
     async request(endpoint, options = {}) {

@@ -23,9 +23,46 @@ const app = express();
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 
 // CORS — must allow credentials for cookies
+// the FRONTEND_URL variable can be a single origin or a comma-separated
+// list of allowed origins (handy if you deploy frontend & backend to
+// different domains/branches).  we construct a function that checks the
+// incoming origin against the list.
+let allowedOrigins = (config.frontendUrl || '')
+    .split(',')
+    .map((u) => u.trim())
+    .filter(Boolean);
+
+// automatically allow the Vercel-deployed frontend when running on Vercel
+if (process.env.VERCEL_URL) {
+    const vercelOrigin = `https://${process.env.VERCEL_URL}`;
+    if (!allowedOrigins.includes(vercelOrigin)) {
+        allowedOrigins.push(vercelOrigin);
+    }
+}
+
+console.log('CORS allowed origins:', allowedOrigins);
+
 app.use(
     cors({
-        origin: config.frontendUrl,
+        origin: function (origin, callback) {
+            // log for debugging; CORS failures are opaque on the client
+            console.debug('CORS check - incoming origin:', origin, 'allowed:', allowedOrigins);
+
+            // when origin is undefined (e.g. curl or same-origin requests), allow it
+            if (!origin) return callback(null, true);
+            
+            // in development, be permissive (allow any origin)
+            if (config.nodeEnv === 'development') {
+                return callback(null, true);
+            }
+            
+            // in production, strictly check against whitelist
+            if (allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
+                return callback(null, true);
+            }
+            // not allowed
+            return callback(new Error('CORS policy violation'), false);
+        },
         credentials: true,
     })
 );
