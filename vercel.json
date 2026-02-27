@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "backend/src/server.js",
+      "src": "api/[...slug].js",
       "use": "@vercel/node",
       "config": { "maxLambdaSize": "50mb" }
     },
@@ -12,8 +12,5 @@
       "config": { "distDir": "frontend/dist" }
     }
   ],
-  "routes": [
-    
-    { "src": "/api/(.*)", "dest": "/backend/src/server.js" }
-  ]
+  "routes": []
 }
