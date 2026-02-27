@@ -13,7 +13,7 @@
     }
   ],
   "routes": [
-    // API requests should be handled by the Node serverless function
+    
     { "src": "/api/(.*)", "dest": "/backend/src/server.js" }
   ]
 }
