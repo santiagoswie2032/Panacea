@@ -3,7 +3,7 @@ Panacea
 Panacea is a web application designed to help individuals manage their medical information in one secure, organized place. It focuses on reducing confusion, missed medications, and scattered health records by giving users a single, simple dashboard for their healthcare data.
 
 The Problem
-
+     
 Many people struggle with:
 
 Forgetting to take medications on time
