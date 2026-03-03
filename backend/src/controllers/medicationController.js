@@ -2,12 +2,12 @@
  * Panacea — Medication Controller (JSON file-based)
  */
 
-const medicationStore = require('../config/medicationStore');
-const doseRecordStore = require('../config/doseRecordStore');
-const { v4: uuidv4 } = require('uuid');
+import medicationStore from '../config/medicationStore.js';
+import doseRecordStore from '../config/doseRecordStore.js';
+import { v4 as uuidv4 } from 'uuid';
 
 // Get all medications for user
-exports.getAll = async (req, res, next) => {
+export const getAll = async (req, res, next) => {
     try {
         const medications = medicationStore.find({ userId: req.userId }).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         res.json({ success: true, data: medications });
@@ -17,7 +17,7 @@ exports.getAll = async (req, res, next) => {
 };
 
 // Get single medication
-exports.getOne = async (req, res, next) => {
+export const getOne = async (req, res, next) => {
     try {
         const medication = medicationStore.findOne({
             _id: req.params.id,
@@ -38,7 +38,7 @@ exports.getOne = async (req, res, next) => {
 };
 
 // Create medication
-exports.create = async (req, res, next) => {
+export const create = async (req, res, next) => {
     try {
         const { name, dosage, timings, totalStock, instructions } = req.body;
 
@@ -67,7 +67,7 @@ exports.create = async (req, res, next) => {
 };
 
 // Update medication
-exports.update = async (req, res, next) => {
+export const update = async (req, res, next) => {
     try {
         const { name, dosage, timings, totalStock, remainingStock, instructions, active } = req.body;
 
@@ -90,7 +90,7 @@ exports.update = async (req, res, next) => {
 };
 
 // Delete medication
-exports.remove = async (req, res, next) => {
+export const remove = async (req, res, next) => {
     try {
         const medication = medicationStore.findOneAndDelete({
             _id: req.params.id,
@@ -114,7 +114,7 @@ exports.remove = async (req, res, next) => {
 };
 
 // Mark a dose as taken
-exports.takeDose = async (req, res, next) => {
+export const takeDose = async (req, res, next) => {
     try {
         const { medicationId, scheduledTime, date } = req.body;
 
@@ -164,7 +164,7 @@ exports.takeDose = async (req, res, next) => {
 };
 
 // Get today's schedule
-exports.getTodaySchedule = async (req, res, next) => {
+export const getTodaySchedule = async (req, res, next) => {
     try {
         const today = new Date().toISOString().split('T')[0];
         const now = new Date();

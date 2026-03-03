@@ -2,9 +2,9 @@
  * Panacea — JSON File-based Dose Record Store
  */
 
-const fs = require('fs');
-const path = require('path');
-const { v4: uuidv4 } = require('uuid');
+import fs from 'fs';
+import path from 'path';
+import { v4 as uuidv4 } from 'uuid';
 
 const DATA_DIR = path.join(__dirname, '..', '..', 'data');
 const DOSE_RECORDS_FILE = path.join(DATA_DIR, 'doseRecords.json');
@@ -29,7 +29,7 @@ const writeRecords = (records) => {
     fs.writeFileSync(DOSE_RECORDS_FILE, JSON.stringify(records, null, 2), 'utf8');
 };
 
-module.exports = {
+const doseRecordStore = {
     findOne: (query) => {
         const records = readRecords();
         return records.find(
@@ -65,3 +65,5 @@ module.exports = {
         writeRecords(filtered);
     },
 };
+
+export default doseRecordStore;

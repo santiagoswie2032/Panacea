@@ -1,15 +1,22 @@
-const express = require('express');
-const router = express.Router();
-const documentController = require('../controllers/documentController');
-const auth = require('../middlewares/auth');
-const upload = require('../middlewares/upload');
+import { Router } from 'express';
+import {
+    getAll,
+    upload as uploadDocument,
+    rename,
+    remove,
+    download,
+} from '../controllers/documentController.js';
+import auth from '../middlewares/auth.js';
+import upload from '../middlewares/upload.js';
+
+const router = Router();
 
 router.use(auth);
 
-router.post('/upload', upload.single('file'), documentController.upload);
-router.get('/:id/download', documentController.download);
-router.get('/', documentController.getAll);
-router.put('/:id', documentController.rename);
-router.delete('/:id', documentController.remove);
+router.post('/upload', upload.single('file'), uploadDocument);
+router.get('/:id/download', download);
+router.get('/', getAll);
+router.put('/:id', rename);
+router.delete('/:id', remove);
 
-module.exports = router;
+export default router;

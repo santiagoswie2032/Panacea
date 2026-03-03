@@ -1,7 +1,7 @@
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
-const config = require('../config/env');
+import multer from 'multer';
+import path from 'path';
+import fs from 'fs';
+import config from '../config/env.js';
 
 // Ensure upload directory exists
 const uploadDir = path.resolve(config.upload.dir);
@@ -48,4 +48,4 @@ const upload = multer({
     },
 });
 
-module.exports = upload;
+export default upload;

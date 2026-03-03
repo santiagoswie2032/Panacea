@@ -2,9 +2,9 @@
  * Panacea — JSON File-based Notification Store
  */
 
-const fs = require('fs');
-const path = require('path');
-const { v4: uuidv4 } = require('uuid');
+import fs from 'fs';
+import path from 'path';
+import { v4 as uuidv4 } from 'uuid';
 
 const DATA_DIR = path.join(__dirname, '..', '..', 'data');
 const NOTIFICATIONS_FILE = path.join(DATA_DIR, 'notifications.json');
@@ -29,7 +29,7 @@ const writeNotifications = (notif) => {
     fs.writeFileSync(NOTIFICATIONS_FILE, JSON.stringify(notif, null, 2), 'utf8');
 };
 
-module.exports = {
+const notificationStore = {
     find: (query) => {
         const notifs = readNotifications();
         if (query.userId) {
@@ -53,3 +53,5 @@ module.exports = {
         return notif;
     },
 };
+
+export default notificationStore;

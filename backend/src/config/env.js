@@ -1,7 +1,13 @@
-require('dotenv').config();
-const path = require('path');
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-module.exports = {
+dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const config = {
     mongoUri: process.env.MONGO_URI || 'mongodb://localhost:27017/panacea',
     port: process.env.PORT || 5000,
     nodeEnv: process.env.NODE_ENV || 'development',
@@ -15,3 +21,5 @@ module.exports = {
         dir: process.env.UPLOAD_DIR || path.join(__dirname, '..', '..', 'uploads'),
     },
 };
+
+export default config;

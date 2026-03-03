@@ -1,8 +1,8 @@
-const userStore = require('../config/userStore');
-const config = require('../config/env');
+import userStore from '../config/userStore.js';
+import config from '../config/env.js';
 
 // Save push subscription
-exports.subscribe = async (req, res, next) => {
+export const subscribe = async (req, res, next) => {
     try {
         const { subscription } = req.body;
 
@@ -24,7 +24,7 @@ exports.subscribe = async (req, res, next) => {
 };
 
 // Get VAPID public key
-exports.getVapidKey = async (req, res) => {
+export const getVapidKey = async (req, res) => {
     res.json({
         success: true,
         data: { publicKey: config.vapid?.publicKey || 'default-public-key' },
@@ -32,7 +32,7 @@ exports.getVapidKey = async (req, res) => {
 };
 
 // Unsubscribe from push
-exports.unsubscribe = async (req, res, next) => {
+export const unsubscribe = async (req, res, next) => {
     try {
         userStore.updateById(req.userId, {
             pushSubscription: null,

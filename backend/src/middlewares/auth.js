@@ -4,9 +4,9 @@
  * Validates JWT and fetches user from MongoDB.
  */
 
-const jwt = require('jsonwebtoken');
-const config = require('../config/env');
-const userStore = require('../config/userStore');
+import jwt from 'jsonwebtoken';
+import config from '../config/env.js';
+import userStore from '../config/userStore.js';
 
 const auth = async (req, res, next) => {
     try {
@@ -43,4 +43,4 @@ const auth = async (req, res, next) => {
     }
 };
 
-module.exports = auth;
+export default auth;

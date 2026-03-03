@@ -1,10 +1,10 @@
-const documentStore = require('../config/documentStore');
-const path = require('path');
-const fs = require('fs');
-const config = require('../config/env');
+import documentStore from '../config/documentStore.js';
+import path from 'path';
+import fs from 'fs';
+import config from '../config/env.js';
 
 // Get all documents for user
-exports.getAll = async (req, res, next) => {
+export const getAll = async (req, res, next) => {
     try {
         const { category } = req.query;
         const documents = documentStore.find({ userId: req.userId });
@@ -17,7 +17,7 @@ exports.getAll = async (req, res, next) => {
 };
 
 // Upload document
-exports.upload = async (req, res, next) => {
+export const upload = async (req, res, next) => {
     try {
         if (!req.file) {
             return res.status(400).json({
@@ -52,7 +52,7 @@ exports.upload = async (req, res, next) => {
 };
 
 // Rename document
-exports.rename = async (req, res, next) => {
+export const rename = async (req, res, next) => {
     try {
         const { name } = req.body;
 
@@ -72,7 +72,7 @@ exports.rename = async (req, res, next) => {
 };
 
 // Delete document
-exports.remove = async (req, res, next) => {
+export const remove = async (req, res, next) => {
     try {
         const document = documentStore.findByIdAndDelete(req.params.id);
 
@@ -100,7 +100,7 @@ exports.remove = async (req, res, next) => {
 };
 
 // Download / Preview document
-exports.download = async (req, res, next) => {
+export const download = async (req, res, next) => {
     try {
         const document = documentStore.findById(req.params.id);
 

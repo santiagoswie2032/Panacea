@@ -3,9 +3,9 @@
  * Replaces MongoDB for simple file-based architecture.
  */
 
-const fs = require('fs');
-const path = require('path');
-const { v4: uuidv4 } = require('uuid');
+import fs from 'fs';
+import path from 'path';
+import { v4 as uuidv4 } from 'uuid';
 
 const DATA_DIR = path.join(__dirname, '..', '..', 'data');
 const MEDICATIONS_FILE = path.join(DATA_DIR, 'medications.json');
@@ -30,7 +30,7 @@ const writeMedications = (medications) => {
     fs.writeFileSync(MEDICATIONS_FILE, JSON.stringify(medications, null, 2), 'utf8');
 };
 
-module.exports = {
+const medicationStore = {
     find: (query) => {
         const meds = readMedications();
         if (query.userId) {
@@ -123,3 +123,5 @@ module.exports = {
         return med;
     },
 };
+
+export default medicationStore;

@@ -1,11 +1,12 @@
-const express = require('express');
-const router = express.Router();
-const notificationController = require('../controllers/notificationController');
-const auth = require('../middlewares/auth');
+import { Router } from 'express';
+import { getVapidKey, subscribe, unsubscribe } from '../controllers/notificationController.js';
+import auth from '../middlewares/auth.js';
 
-router.get('/vapid-key', notificationController.getVapidKey);
+const router = Router();
+
+router.get('/vapid-key', getVapidKey);
 router.use(auth);
-router.post('/subscribe', notificationController.subscribe);
-router.post('/unsubscribe', notificationController.unsubscribe);
+router.post('/subscribe', subscribe);
+router.post('/unsubscribe', unsubscribe);
 
-module.exports = router;
+export default router;

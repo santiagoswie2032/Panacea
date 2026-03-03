@@ -3,11 +3,11 @@
  * Cookie-based JWT auth with MongoDB persistence.
  */
 
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const userStore = require('../config/userStore');
-const medicationStore = require('../config/medicationStore');
-const config = require('../config/env');
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import userStore from '../config/userStore.js';
+import medicationStore from '../config/medicationStore.js';
+import config from '../config/env.js';
 
 const COOKIE_OPTIONS = {
     httpOnly: true,
@@ -50,7 +50,7 @@ const SEED_MEDICATIONS = [
 ];
 
 // POST /api/auth/register
-exports.register = async (req, res, next) => {
+export const register = async (req, res, next) => {
     try {
         const { email, password, name } = req.body;
 
@@ -104,7 +104,7 @@ exports.register = async (req, res, next) => {
 };
 
 // POST /api/auth/login
-exports.login = async (req, res, next) => {
+export const login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
         const normalizedEmail = typeof email === 'string' ? email.toLowerCase().trim() : email;
@@ -134,12 +134,12 @@ exports.login = async (req, res, next) => {
 
 
 // POST /api/auth/logout
-exports.logout = (req, res) => {
+export const logout = (req, res) => {
     res.clearCookie('token', { path: '/' });
     return res.json({ success: true, message: 'Logged out successfully.' });
 };
 
 // GET /api/auth/me
-exports.me = (req, res) => {
+export const me = (req, res) => {
     return res.json({ success: true, data: { user: sanitizeUser(req.user) } });
 };

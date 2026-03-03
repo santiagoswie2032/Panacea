@@ -3,9 +3,9 @@
  * Persists users to MongoDB Atlas via Mongoose.
  */
 
-const User = require('../models/User');
+import User from '../models/User.js';
 
-module.exports = {
+const userStore = {
     findByEmail: async (email) => {
         if (!email) return null;
         return await User.findOne({ email: email.toLowerCase().trim() }).select('+password');
@@ -21,3 +21,5 @@ module.exports = {
         return await User.findByIdAndUpdate(id, updates, { new: true });
     },
 };
+
+export default userStore;

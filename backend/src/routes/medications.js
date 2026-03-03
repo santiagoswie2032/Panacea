@@ -1,16 +1,25 @@
-const express = require('express');
-const router = express.Router();
-const medicationController = require('../controllers/medicationController');
-const auth = require('../middlewares/auth');
+import { Router } from 'express';
+import {
+    getAll,
+    getTodaySchedule,
+    getOne,
+    create,
+    update,
+    remove,
+    takeDose,
+} from '../controllers/medicationController.js';
+import auth from '../middlewares/auth.js';
+
+const router = Router();
 
 router.use(auth);
 
-router.get('/schedule/today', medicationController.getTodaySchedule);
-router.get('/', medicationController.getAll);
-router.get('/:id', medicationController.getOne);
-router.post('/', medicationController.create);
-router.put('/:id', medicationController.update);
-router.delete('/:id', medicationController.remove);
-router.post('/dose/take', medicationController.takeDose);
+router.get('/schedule/today', getTodaySchedule);
+router.get('/', getAll);
+router.get('/:id', getOne);
+router.post('/', create);
+router.put('/:id', update);
+router.delete('/:id', remove);
+router.post('/dose/take', takeDose);
 
-module.exports = router;
+export default router;

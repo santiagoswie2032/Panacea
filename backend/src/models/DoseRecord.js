@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const doseRecordSchema = new mongoose.Schema(
     {
@@ -42,4 +42,6 @@ const doseRecordSchema = new mongoose.Schema(
 doseRecordSchema.index({ userId: 1, date: 1 });
 doseRecordSchema.index({ medicationId: 1, date: 1 });
 
-module.exports = mongoose.model('DoseRecord', doseRecordSchema);
+const DoseRecord = mongoose.model('DoseRecord', doseRecordSchema);
+
+export default DoseRecord;

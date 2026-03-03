@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const medicationSchema = new mongoose.Schema(
     {
@@ -59,4 +59,6 @@ medicationSchema.pre('save', function (next) {
     next();
 });
 
-module.exports = mongoose.model('Medication', medicationSchema);
+const Medication = mongoose.model('Medication', medicationSchema);
+
+export default Medication;

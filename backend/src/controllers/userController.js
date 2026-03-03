@@ -1,12 +1,12 @@
-const userStore = require('../config/userStore');
+import userStore from '../config/userStore.js';
 
 // Get profile
-exports.getProfile = async (req, res) => {
+export const getProfile = async (req, res) => {
     res.json({ success: true, data: req.user });
 };
 
 // Update profile
-exports.updateProfile = async (req, res, next) => {
+export const updateProfile = async (req, res, next) => {
     try {
         const allowedFields = [
             'name',
@@ -35,7 +35,7 @@ exports.updateProfile = async (req, res, next) => {
 };
 
 // Get emergency info
-exports.getEmergencyInfo = async (req, res) => {
+export const getEmergencyInfo = async (req, res) => {
     const user = req.user;
     res.json({
         success: true,
@@ -51,7 +51,7 @@ exports.getEmergencyInfo = async (req, res) => {
 };
 
 // Update emergency info
-exports.updateEmergencyInfo = async (req, res, next) => {
+export const updateEmergencyInfo = async (req, res, next) => {
     try {
         const { emergencyContact, emergencyContactName, bloodGroup, medicalConditions } = req.body;
 

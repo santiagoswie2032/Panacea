@@ -1,7 +1,8 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+import connectDB from '../src/config/database.js';
+import User from '../src/models/User.js';
 
-const connectDB = require('../src/config/database');
-const User = require('../src/models/User');
+dotenv.config();
 
 const rawEmail = process.argv[2];
 

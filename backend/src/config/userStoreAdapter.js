@@ -3,9 +3,9 @@
  * Already handled by userStore.js but this is for the controller
  */
 
-const userStore = require('./userStore');
+import userStore from './userStore.js';
 
-module.exports = {
+const userStoreAdapter = {
     findById: (id) => {
         return userStore.findById(id);
     },
@@ -16,3 +16,5 @@ module.exports = {
         return userStore.updateById(id, updates);
     },
 };
+
+export default userStoreAdapter;

@@ -2,9 +2,9 @@
  * Panacea — JSON File-based Document Store
  */
 
-const fs = require('fs');
-const path = require('path');
-const { v4: uuidv4 } = require('uuid');
+import fs from 'fs';
+import path from 'path';
+import { v4 as uuidv4 } from 'uuid';
 
 const DATA_DIR = path.join(__dirname, '..', '..', 'data');
 const DOCUMENTS_FILE = path.join(DATA_DIR, 'documents.json');
@@ -29,7 +29,7 @@ const writeDocuments = (docs) => {
     fs.writeFileSync(DOCUMENTS_FILE, JSON.stringify(docs, null, 2), 'utf8');
 };
 
-module.exports = {
+const documentStore = {
     find: (query) => {
         const docs = readDocuments();
         if (query.userId) {
@@ -66,3 +66,5 @@ module.exports = {
         return doc;
     },
 };
+
+export default documentStore;

@@ -1,23 +1,27 @@
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const morgan = require('morgan');
-const cookieParser = require('cookie-parser');
-const rateLimit = require('express-rate-limit');
-const path = require('path');
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
+import rateLimit from 'express-rate-limit';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const config = require('./config/env');
-const connectDB = require('./config/database');
-const errorHandler = require('./middlewares/errorHandler');
+import config from './config/env.js';
+import connectDB from './config/database.js';
+import errorHandler from './middlewares/errorHandler.js';
 
 // Routes
-const authRoutes = require('./routes/auth');
-const medicationRoutes = require('./routes/medications');
-const documentRoutes = require('./routes/documents');
-const notificationRoutes = require('./routes/notifications');
-const userRoutes = require('./routes/users');
+import authRoutes from './routes/auth.js';
+import medicationRoutes from './routes/medications.js';
+import documentRoutes from './routes/documents.js';
+import notificationRoutes from './routes/notifications.js';
+import userRoutes from './routes/users.js';
 
 const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Security
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));

@@ -1,9 +1,9 @@
-const webPush = require('web-push');
-const cron = require('node-cron');
-const User = require('../models/User');
-const Medication = require('../models/Medication');
-const DoseRecord = require('../models/DoseRecord');
-const config = require('../config/env');
+import webPush from 'web-push';
+import cron from 'node-cron';
+import User from '../models/User.js';
+import Medication from '../models/Medication.js';
+import DoseRecord from '../models/DoseRecord.js';
+import config from '../config/env.js';
 
 /**
  * Initialize Web Push with VAPID keys
@@ -118,8 +118,10 @@ function startReminderScheduler() {
     console.log('✅ Medication reminder scheduler started');
 }
 
-module.exports = {
+const notificationService = {
     initializeWebPush,
     sendPushNotification,
     startReminderScheduler,
 };
+
+export default notificationService;
