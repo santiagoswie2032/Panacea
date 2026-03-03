@@ -1,7 +1,13 @@
 import { createContext, useContext, useState, useCallback } from 'react';
-import { CheckCircle, XCircle, Info } from 'lucide-react';
+import Icon from '../components/Icon';
 
 const ToastContext = createContext(null);
+
+const TOAST_ICONS = {
+    success: <Icon name="checkCircle" size={18} />,
+    error: <Icon name="xCircle" size={18} />,
+    info: <Icon name="info" size={18} />,
+};
 
 export function ToastProvider({ children }) {
     const [toasts, setToasts] = useState([]);
@@ -24,11 +30,7 @@ export function ToastProvider({ children }) {
             <div className="toast-container">
                 {toasts.map((toast) => (
                     <div key={toast.id} className={`toast toast--${toast.type}`}>
-                        <span>
-                            {toast.type === 'success' && <CheckCircle size={18} style={{ verticalAlign: 'middle', marginRight: '6px' }} />}
-                            {toast.type === 'error' && <XCircle size={18} style={{ verticalAlign: 'middle', marginRight: '6px' }} />}
-                            {toast.type === 'info' && <Info size={18} style={{ verticalAlign: 'middle', marginRight: '6px' }} />}
-                        </span>
+                        {TOAST_ICONS[toast.type]}
                         {toast.message}
                     </div>
                 ))}

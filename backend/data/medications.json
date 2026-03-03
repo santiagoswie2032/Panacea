@@ -419,6 +419,10 @@
     "userId": "69a0a3439148771cbf9e5c1e",
     "name": "Lisinopril",
     "dosage": "10mg",
+    "_id": "73c5c3ca-3dc9-4f5b-b875-a36f7343287e",
+    "userId": "ef83a8ea-050d-4c80-bf91-6ffd91ca76fe",
+    "name": "aspirin",
+    "dosage": "50mg",
     "timings": [
       "08:00",
       "20:00"
@@ -465,6 +469,18 @@
     "userId": "69a0a3439148771cbf9e5c1e",
     "name": "Lisinopril",
     "dosage": "10mg",
+    "totalStock": 23,
+    "remainingStock": 21,
+    "instructions": "after meals",
+    "active": true,
+    "createdAt": "2026-02-26T15:49:56.972Z",
+    "updatedAt": "2026-02-26T17:57:59.617Z"
+  },
+  {
+    "_id": "b629e477-bd27-45c4-bd55-988e77ec987b",
+    "userId": "369c0522-5bdc-4493-a0b1-ec7d91c4fa60",
+    "name": "aspirin",
+    "dosage": "50mg",
     "timings": [
       "08:00",
       "20:00"
@@ -628,6 +644,7 @@
     "active": true,
     "createdAt": "2026-02-26T20:29:15.786Z",
     "updatedAt": "2026-02-26T20:29:15.786Z"
+<<<<<<< HEAD
   },
   {
     "_id": "a4b755e7-89aa-4a54-b9d8-dd30951b5dce",
@@ -2376,5 +2393,13 @@
     "active": true,
     "createdAt": "2026-02-26T21:53:49.395Z",
     "updatedAt": "2026-02-26T21:53:49.395Z"
+=======
+    "totalStock": 29,
+    "remainingStock": 29,
+    "instructions": "after meals",
+    "active": true,
+    "createdAt": "2026-02-26T19:09:20.023Z",
+    "updatedAt": "2026-02-26T19:09:20.023Z"
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
   }
 ]

@@ -1,5 +1,9 @@
 import { useState } from 'react';
+<<<<<<< HEAD
 import { Activity, Microscope, HeartPulse, Brain } from 'lucide-react';
+=======
+import Icon from '../components/Icon';
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
 import './Doctors.css';
 
 const DOCTORS = [
@@ -12,7 +16,10 @@ const DOCTORS = [
         qualification: 'MD, DMRD',
         experience: '15 years',
         email: 'rajesh.kumar@apollohospitals.com',
+<<<<<<< HEAD
         avatar: <Activity size={48} />,
+=======
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
     },
     {
         _id: 'doc2',
@@ -23,7 +30,10 @@ const DOCTORS = [
         qualification: 'MD Pathology, MBBS',
         experience: '12 years',
         email: 'sanjay.mishra@apollodiagnostics.com',
+<<<<<<< HEAD
         avatar: <Microscope size={48} />,
+=======
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
     },
     {
         _id: 'doc3',
@@ -34,7 +44,10 @@ const DOCTORS = [
         qualification: 'DM Cardiology, MD',
         experience: '18 years',
         email: 'priya.sharma@maxhealthcare.com',
+<<<<<<< HEAD
         avatar: <HeartPulse size={48} />,
+=======
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
     },
     {
         _id: 'doc4',
@@ -45,7 +58,10 @@ const DOCTORS = [
         qualification: 'DM Neurology, MD',
         experience: '14 years',
         email: 'arun.patel@fortishealthcare.com',
+<<<<<<< HEAD
         avatar: <Brain size={48} />,
+=======
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
     },
 ];
 
@@ -66,7 +82,9 @@ export default function Doctors() {
                         className={`doctor-card glass-card ${selectedDoctor?._id === doctor._id ? 'doctor-card--active' : ''}`}
                         onClick={() => setSelectedDoctor(selectedDoctor?._id === doctor._id ? null : doctor)}
                     >
-                        <div className="doctor-card__avatar">{doctor.avatar}</div>
+                        <div className="doctor-card__avatar">
+                            <Icon name="stethoscope" size={24} color="var(--color-primary)" />
+                        </div>
                         <h3 className="doctor-card__name">{doctor.name}</h3>
                         <p className="doctor-card__spec">{doctor.specialization}</p>
 
@@ -87,12 +105,14 @@ export default function Doctors() {
                                 <div className="doctor-card__detail">
                                     <span className="doctor-card__label">Contact:</span>
                                     <a href={`tel:${doctor.contact}`} className="doctor-card__link">
+                                        <Icon name="phone" size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
                                         {doctor.contact}
                                     </a>
                                 </div>
                                 <div className="doctor-card__detail">
                                     <span className="doctor-card__label">Email:</span>
                                     <a href={`mailto:${doctor.email}`} className="doctor-card__link">
+                                        <Icon name="mail" size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
                                         {doctor.email}
                                     </a>
                                 </div>

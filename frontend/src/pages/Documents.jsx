@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '../context/ToastContext';
 import api from '../services/api';
+<<<<<<< HEAD
 import { FolderOpen, Bone, Brain, Heart, FileText, Microscope, File, Lock, Eye, Pencil, Trash2, X, UploadCloud } from 'lucide-react';
 import './Documents.css';
 
@@ -11,6 +12,18 @@ const CATEGORIES = [
     { key: 'mri', label: 'MRI', icon: <Heart size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> },
     { key: 'prescription', label: 'Prescriptions', icon: <FileText size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> },
     { key: 'labreport', label: 'Lab Reports', icon: <Microscope size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> },
+=======
+import Icon from '../components/Icon';
+import './Documents.css';
+
+const CATEGORIES = [
+    { key: '', label: 'All', icon: 'folder' },
+    { key: 'xray', label: 'X-Rays', icon: 'scan' },
+    { key: 'ctscan', label: 'CT Scans', icon: 'scan' },
+    { key: 'mri', label: 'MRI', icon: 'activity' },
+    { key: 'prescription', label: 'Prescriptions', icon: 'fileText' },
+    { key: 'labreport', label: 'Lab Reports', icon: 'flask' },
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
 ];
 
 const DUMMY_DOCUMENTS = [
@@ -144,7 +157,11 @@ export default function Documents() {
 
     const getCategoryIcon = (cat) => {
         const found = CATEGORIES.find((c) => c.key === cat);
+<<<<<<< HEAD
         return found?.icon || <File size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} />;
+=======
+        return found?.icon || 'file';
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
     };
 
     if (loading) {
@@ -159,14 +176,26 @@ export default function Documents() {
     return (
         <div className="documents-page">
             <div className="section-header">
+<<<<<<< HEAD
                 <h1 className="heading-2"><File size={32} style={{ verticalAlign: 'middle', marginRight: '8px' }} /> Medical Documents</h1>
+=======
+                <h1 className="heading-2">
+                    <Icon name="folder" size={22} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 6 }} />
+                    Medical Documents
+                </h1>
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                 <button className="btn btn--primary btn--sm" onClick={() => setShowUpload(true)}>
-                    + Upload Document
+                    <Icon name="plus" size={16} /> Upload
                 </button>
             </div>
 
             <p className="docs-privacy-note">
+<<<<<<< HEAD
                 <Lock size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> Your documents are stored securely and only accessible to you
+=======
+                <Icon name="lock" size={14} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
+                Your documents are stored securely and only accessible to you
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
             </p>
 
             {/* Category tabs */}
@@ -177,7 +206,7 @@ export default function Documents() {
                         className={`tab ${activeCategory === cat.key ? 'tab--active' : ''}`}
                         onClick={() => { setActiveCategory(cat.key); setLoading(true); }}
                     >
-                        {cat.icon} {cat.label}
+                        <Icon name={cat.icon} size={14} style={{ marginRight: 4 }} /> {cat.label}
                     </button>
                 ))}
             </div>
@@ -185,7 +214,13 @@ export default function Documents() {
             {/* Document Grid */}
             {documents.length === 0 ? (
                 <div className="empty-state">
+<<<<<<< HEAD
                     <div className="empty-state__icon"><FolderOpen size={48} /></div>
+=======
+                    <div className="empty-state__icon">
+                        <Icon name="folder" size={32} color="var(--color-text-muted)" />
+                    </div>
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                     <p className="empty-state__title">No documents yet</p>
                     <p className="empty-state__text">Upload your medical documents to keep them organized and accessible</p>
                 </div>
@@ -194,7 +229,7 @@ export default function Documents() {
                     {documents.map((doc) => (
                         <div key={doc._id} className="doc-card glass-card">
                             <div className="doc-card__icon">
-                                {getCategoryIcon(doc.category)}
+                                <Icon name={getCategoryIcon(doc.category)} size={24} color="var(--color-primary)" />
                             </div>
                             <div className="doc-card__info">
                                 {renamingDoc === doc._id ? (
@@ -210,7 +245,11 @@ export default function Documents() {
                                             Save
                                         </button>
                                         <button className="btn btn--ghost btn--sm" onClick={() => setRenamingDoc(null)}>
+<<<<<<< HEAD
                                             <X size={16} />
+=======
+                                            <Icon name="x" size={14} />
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                                         </button>
                                     </div>
                                 ) : (
@@ -230,21 +269,33 @@ export default function Documents() {
                                     className="doc-card__btn"
                                     title="Preview"
                                 >
+<<<<<<< HEAD
                                     <Eye size={16} />
+=======
+                                    <Icon name="eye" size={16} />
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                                 </a>
                                 <button
                                     className="doc-card__btn"
                                     onClick={() => { setRenamingDoc(doc._id); setRenameValue(doc.name); }}
                                     title="Rename"
                                 >
+<<<<<<< HEAD
                                     <Pencil size={16} />
+=======
+                                    <Icon name="edit" size={16} />
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                                 </button>
                                 <button
                                     className="doc-card__btn doc-card__btn--delete"
                                     onClick={() => handleDelete(doc._id)}
                                     title="Delete"
                                 >
+<<<<<<< HEAD
                                     <Trash2 size={16} />
+=======
+                                    <Icon name="trash" size={16} />
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                                 </button>
                             </div>
                         </div>
@@ -258,7 +309,13 @@ export default function Documents() {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h2 className="heading-3">Upload Document</h2>
+<<<<<<< HEAD
                             <button className="modal-close" onClick={() => setShowUpload(false)}><X size={24} /></button>
+=======
+                            <button className="modal-close" onClick={() => setShowUpload(false)}>
+                                <Icon name="x" size={18} />
+                            </button>
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                         </div>
 
                         <form onSubmit={handleUpload}>
@@ -271,7 +328,7 @@ export default function Documents() {
                                 >
                                     {CATEGORIES.filter((c) => c.key).map((cat) => (
                                         <option key={cat.key} value={cat.key}>
-                                            {cat.icon} {cat.label}
+                                            {cat.label}
                                         </option>
                                     ))}
                                 </select>
@@ -307,13 +364,23 @@ export default function Documents() {
                                     <label htmlFor="doc-file" className="doc-upload-zone__label">
                                         {uploadForm.file ? (
                                             <>
+<<<<<<< HEAD
                                                 <File size={16} />
+=======
+                                                <Icon name="file" size={20} color="var(--color-primary)" />
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                                                 <span>{uploadForm.file.name}</span>
                                                 <span className="text-small text-muted">{formatFileSize(uploadForm.file.size)}</span>
                                             </>
                                         ) : (
                                             <>
+<<<<<<< HEAD
                                                 <span className="doc-upload-zone__icon"><UploadCloud size={24} /></span>
+=======
+                                                <span className="doc-upload-zone__icon">
+                                                    <Icon name="upload" size={28} color="var(--color-primary)" />
+                                                </span>
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                                                 <span>Tap to select a file</span>
                                                 <span className="text-small text-muted">PDF, JPEG, PNG • Max 10MB</span>
                                             </>

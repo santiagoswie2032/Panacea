@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import api from '../services/api';
+import Icon from '../components/Icon';
 import notificationService from '../services/notifications';
 import { X, AlertTriangle } from 'lucide-react';
 import './Profile.css';
@@ -238,7 +239,11 @@ export default function Profile() {
                                     onClick={() => handleRemoveCondition(index)}
                                     aria-label={`Remove ${condition}`}
                                 >
+<<<<<<< HEAD
                                     <X size={16} />
+=======
+                                    <Icon name="x" size={10} />
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                                 </button>
                             </span>
                         ))}
@@ -284,7 +289,12 @@ export default function Profile() {
                     </div>
                     {notifStatus === 'denied' && (
                         <p className="text-small" style={{ color: 'var(--color-warning-light)', marginTop: 'var(--space-2)' }}>
+<<<<<<< HEAD
                             <AlertTriangle size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> Notifications are blocked. Please enable them in your browser settings.
+=======
+                            <Icon name="alertTriangle" size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: 4 }} />
+                            Notifications are blocked. Please enable them in your browser settings.
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                         </p>
                     )}
                 </div>
@@ -301,7 +311,7 @@ export default function Profile() {
 
             {/* Logout */}
             <button className="btn btn--ghost btn--block mt-4 profile-logout" onClick={handleLogout}>
-                Log Out
+                <Icon name="logOut" size={16} style={{ marginRight: 6 }} /> Log Out
             </button>
         </div>
     );

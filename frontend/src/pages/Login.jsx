@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
+<<<<<<< HEAD
 import { User, Mail, Lock, Eye, EyeOff, ArrowRight, HeartPulse, Database, Pill, FileText } from 'lucide-react';
+=======
+import Icon from '../components/Icon';
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
 import './Login.css';
 
 export default function Login() {
@@ -53,7 +57,13 @@ export default function Login() {
                 {/* Brand header */}
                 <div className="login-header">
                     <div className="login-logo">
+<<<<<<< HEAD
                         <span className="login-logo-icon"><HeartPulse size={32} /></span>
+=======
+                        <span className="login-logo-icon">
+                            <Icon name="plusCircle" size={36} color="var(--color-primary)" />
+                        </span>
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                         <div className="login-logo-ring" />
                     </div>
                     <h1 className="login-title">Panacea</h1>
@@ -90,7 +100,13 @@ export default function Login() {
                             <div className="form-group">
                                 <label className="form-label" htmlFor="login-name">Full Name</label>
                                 <div className="input-wrapper">
+<<<<<<< HEAD
                                     <span className="input-icon"><User size={20} /></span>
+=======
+                                    <span className="input-icon">
+                                        <Icon name="user" size={16} />
+                                    </span>
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                                     <input
                                         id="login-name"
                                         className="form-input form-input--icon"
@@ -108,7 +124,13 @@ export default function Login() {
                         <div className="form-group">
                             <label className="form-label" htmlFor="login-email">Email Address</label>
                             <div className="input-wrapper">
+<<<<<<< HEAD
                                 <span className="input-icon"><Mail size={20} /></span>
+=======
+                                <span className="input-icon">
+                                    <Icon name="mail" size={16} />
+                                </span>
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                                 <input
                                     id="login-email"
                                     className="form-input form-input--icon"
@@ -125,7 +147,13 @@ export default function Login() {
                         <div className="form-group">
                             <label className="form-label" htmlFor="login-password">Password</label>
                             <div className="input-wrapper">
+<<<<<<< HEAD
                                 <span className="input-icon"><Lock size={20} /></span>
+=======
+                                <span className="input-icon">
+                                    <Icon name="lock" size={16} />
+                                </span>
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                                 <input
                                     id="login-password"
                                     className="form-input form-input--icon form-input--padded-right"
@@ -144,7 +172,11 @@ export default function Login() {
                                     aria-label={showPassword ? 'Hide password' : 'Show password'}
                                     tabIndex={-1}
                                 >
+<<<<<<< HEAD
                                     {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+=======
+                                    <Icon name={showPassword ? 'eyeOff' : 'eye'} size={16} />
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                                 </button>
                             </div>
                         </div>
@@ -158,19 +190,32 @@ export default function Login() {
                             {loading ? (
                                 <span className="spinner spinner--sm" />
                             ) : isLogin ? (
+<<<<<<< HEAD
                                 <>Sign In &nbsp;<ArrowRight size={16} style={{ verticalAlign: 'middle' }} /></>
                             ) : (
                                 <>Create Account &nbsp;<ArrowRight size={16} style={{ verticalAlign: 'middle' }} /></>
+=======
+                                <>Sign In &nbsp;<Icon name="arrowRight" size={16} /></>
+                            ) : (
+                                <>Create Account &nbsp;<Icon name="arrowRight" size={16} /></>
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                             )}
                         </button>
                     </form>
 
                     {/* Features strip */}
                     <div className="login-features">
+<<<<<<< HEAD
                         <span className="login-feature"><Lock size={12} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Secure Auth</span>
                         <span className="login-feature"><Database size={12} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Local Storage</span>
                         <span className="login-feature"><Pill size={12} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Medications</span>
                         <span className="login-feature"><FileText size={12} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Documents</span>
+=======
+                        <span className="login-feature"><Icon name="lock" size={12} /> Secure Auth</span>
+                        <span className="login-feature"><Icon name="shield" size={12} /> Encrypted</span>
+                        <span className="login-feature"><Icon name="pill" size={12} /> Medications</span>
+                        <span className="login-feature"><Icon name="folder" size={12} /> Documents</span>
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                     </div>
                 </div>
             </div>

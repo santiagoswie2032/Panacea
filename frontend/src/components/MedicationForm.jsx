@@ -1,5 +1,9 @@
 import { useState } from 'react';
+<<<<<<< HEAD
 import { X } from 'lucide-react';
+=======
+import Icon from './Icon';
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
 import './MedicationForm.css';
 
 const DEFAULT_TIMINGS = ['08:00', '14:00', '20:00'];
@@ -108,7 +112,11 @@ export default function MedicationForm({ medication, onSubmit, onCancel }) {
                                     onClick={() => removeTiming(index)}
                                     aria-label="Remove timing"
                                 >
+<<<<<<< HEAD
                                     <X size={16} />
+=======
+                                    <Icon name="x" size={12} />
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
                                 </button>
                             )}
                         </div>
@@ -119,7 +127,7 @@ export default function MedicationForm({ medication, onSubmit, onCancel }) {
                             className="btn btn--ghost btn--sm"
                             onClick={addTiming}
                         >
-                            + Add Time
+                            <Icon name="plus" size={14} /> Add Time
                         </button>
                     )}
                 </div>

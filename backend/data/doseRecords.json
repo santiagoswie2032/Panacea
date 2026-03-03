@@ -160,6 +160,7 @@
     "date": "2026-02-26",
     "status": "upcoming",
     "createdAt": "2026-02-26T20:29:14.239Z"
+<<<<<<< HEAD
   },
   {
     "_id": "3d29d7c5-3c9d-48eb-a336-7fca8ab68299",
@@ -664,5 +665,45 @@
     "date": "2026-02-26",
     "status": "upcoming",
     "createdAt": "2026-02-26T21:53:44.966Z"
+=======
+    "_id": "ae44a287-77e2-4954-a654-6b15408bfce2",
+    "userId": "ef83a8ea-050d-4c80-bf91-6ffd91ca76fe",
+    "medicationId": "73c5c3ca-3dc9-4f5b-b875-a36f7343287e",
+    "scheduledTime": "08:00",
+    "date": "2026-02-26",
+    "status": "taken",
+    "createdAt": "2026-02-26T15:49:57.042Z",
+    "takenAt": "2026-02-26T16:01:43.715Z",
+    "updatedAt": "2026-02-26T16:01:43.716Z"
+  },
+  {
+    "_id": "2a321f54-6f4f-4ed1-b95b-09db76c00ebb",
+    "userId": "ef83a8ea-050d-4c80-bf91-6ffd91ca76fe",
+    "medicationId": "73c5c3ca-3dc9-4f5b-b875-a36f7343287e",
+    "scheduledTime": "20:00",
+    "date": "2026-02-26",
+    "status": "taken",
+    "createdAt": "2026-02-26T15:49:57.047Z",
+    "takenAt": "2026-02-26T17:57:59.616Z",
+    "updatedAt": "2026-02-26T17:57:59.616Z"
+  },
+  {
+    "_id": "b3263f15-04e5-4d5b-8f44-845f4a771a2e",
+    "userId": "369c0522-5bdc-4493-a0b1-ec7d91c4fa60",
+    "medicationId": "b629e477-bd27-45c4-bd55-988e77ec987b",
+    "scheduledTime": "08:00",
+    "date": "2026-02-26",
+    "status": "upcoming",
+    "createdAt": "2026-02-26T19:09:20.053Z"
+  },
+  {
+    "_id": "04e6fb6c-7ee4-4815-90e8-bcbbffb6466a",
+    "userId": "369c0522-5bdc-4493-a0b1-ec7d91c4fa60",
+    "medicationId": "b629e477-bd27-45c4-bd55-988e77ec987b",
+    "scheduledTime": "20:00",
+    "date": "2026-02-26",
+    "status": "upcoming",
+    "createdAt": "2026-02-26T19:09:20.061Z"
+>>>>>>> 4a483e9be3d8af39f7a5e7fe5a94b2b0476bbf74
   }
 ]
