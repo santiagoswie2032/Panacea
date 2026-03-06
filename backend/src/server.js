@@ -6,6 +6,9 @@ import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import dotenv from 'dotenv';
+
 
 import config from './config/env.js';
 import connectDB from './config/database.js';
@@ -21,7 +24,7 @@ import userRoutes from './routes/users.js';
 const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = dirname(__filename);
 
 // Security
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
