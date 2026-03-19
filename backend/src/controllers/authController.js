@@ -109,6 +109,7 @@ exports.register = async (req, res, next) => {
 
 // POST /api/auth/login
 exports.login = async (req, res, next) => {
+    console.log('📬 Login request received for email:', req.body.email);
     try {
         const { email, password } = req.body;
         const normalizedEmail = typeof email === 'string' ? email.toLowerCase().trim() : email;

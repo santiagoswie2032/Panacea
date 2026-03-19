@@ -21,9 +21,14 @@ export default function Navbar() {
                     <Icon name="plusCircle" size={22} color="var(--color-primary)" />
                     <span className="top-bar__title">Panacea</span>
                 </NavLink>
-                <NavLink to="/emergency" className="sos-button" aria-label="Emergency SOS">
-                    SOS
-                </NavLink>
+                <div className="top-bar__actions">
+                    <NavLink to="/map" className="map-button" aria-label="Nearby Medical Facilities">
+                        <Icon name="map" size={18} />
+                    </NavLink>
+                    <NavLink to="/emergency" className="sos-button" aria-label="Emergency SOS">
+                        SOS
+                    </NavLink>
+                </div>
             </header>
 
             {/* Bottom navigation */}

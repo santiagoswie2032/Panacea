@@ -9,6 +9,7 @@ import Documents from './pages/Documents';
 import Doctors from './pages/Doctors';
 import Emergency from './pages/Emergency';
 import Profile from './pages/Profile';
+import Map from './pages/Map';
 
 function ProtectedRoute({ children }) {
     const { isAuthenticated, isLoading } = useAuth();
@@ -107,6 +108,19 @@ function AppRoutes() {
                             <Navbar />
                             <div className="page-content">
                                 <Emergency />
+                            </div>
+                        </div>
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/map"
+                element={
+                    <ProtectedRoute>
+                        <div className="app-layout">
+                            <Navbar />
+                            <div className="page-content">
+                                <Map />
                             </div>
                         </div>
                     </ProtectedRoute>

@@ -3,6 +3,9 @@
  */
 const errorHandler = (err, req, res, _next) => {
     console.error('❌ Error:', err.message);
+    if (process.env.NODE_ENV === 'development') {
+        console.error(err.stack);
+    }
 
     // Mongoose validation error
     if (err.name === 'ValidationError') {

@@ -261,6 +261,9 @@ const Icon = ({ name, size = 20, color = 'currentColor', className = '', ...prop
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </>
         ),
+        map: (
+            <path d="M1 6V22L8 18L16 22L23 18V2L16 6L8 2L1 6ZM8 2V18M16 6V22" />
+        ),
     };
 
     return (
