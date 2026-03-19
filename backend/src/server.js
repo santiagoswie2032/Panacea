@@ -17,6 +17,7 @@ const medicationRoutes = require('./routes/medications');
 const documentRoutes = require('./routes/documents');
 const notificationRoutes = require('./routes/notifications');
 const userRoutes = require('./routes/users');
+const boxRoutes = require('./routes/boxes');
 
 const app = express();
 
@@ -115,6 +116,7 @@ app.use('/api/medications', medicationRoutes);
 app.use('/api/documents', documentRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/boxes', boxRoutes);
 
 /* =========================
    Health Check

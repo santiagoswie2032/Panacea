@@ -1,0 +1,280 @@
+/* =========================================
+   BOX ITEM — Expandable Folder-like Container
+   ========================================= */
+
+.box-item {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-standard);
+}
+
+.box-item:hover {
+    border-color: var(--color-border-focus);
+    box-shadow: var(--shadow-md);
+}
+
+.box-item--expanded {
+    box-shadow: var(--shadow-md);
+}
+
+/* Box header — main interactive area */
+.box-item__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    cursor: pointer;
+    transition: background-color var(--transition-standard);
+}
+
+.box-item__header:hover {
+    background-color: var(--color-bg-hover, rgba(34, 197, 94, 0.04));
+}
+
+/* Expand/collapse button */
+.box-item__expand-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    padding: var(--space-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-standard);
+    flex-shrink: 0;
+}
+
+.box-item__expand-btn:hover {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-primary);
+}
+
+.box-item__expand-btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Title area with icon and text */
+.box-item__title-area {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex: 1;
+    min-width: 0;
+}
+
+.box-item__icon {
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.box-item__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+}
+
+.box-item__name {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0;
+    word-break: break-word;
+}
+
+.box-item__count {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+/* Action buttons */
+.box-item__actions {
+    display: flex;
+    gap: var(--space-2);
+    flex-shrink: 0;
+}
+
+.box-item__action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    padding: var(--space-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-standard);
+}
+
+.box-item__action-btn:hover {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-primary);
+}
+
+.box-item__action-btn--delete:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--color-danger);
+}
+
+.box-item__action-btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Expandable content area */
+.box-item__content {
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-4);
+    background-color: var(--color-bg-secondary);
+    animation: slideDown var(--transition-standard) ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Empty state inside box */
+.box-item__empty {
+    padding: var(--space-4);
+    text-align: center;
+}
+
+.box-item__empty .text-muted {
+    display: block;
+    margin-bottom: var(--space-4);
+    font-size: var(--font-size-base);
+}
+
+/* Medications list */
+.medications-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+/* =========================================
+   MEDICATION LIST ITEM — Individual medication in box
+   ========================================= */
+
+.med-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4);
+    background-color: var(--color-bg-primary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    transition: all var(--transition-standard);
+}
+
+.med-list-item:hover {
+    border-color: var(--color-border-focus);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Content area */
+.med-list-item__content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex: 1;
+    min-width: 0;
+}
+
+.med-list-item__icon {
+    color: var(--color-success);
+    flex-shrink: 0;
+}
+
+.med-list-item__name {
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-medium);
+    word-break: break-word;
+}
+
+/* Action buttons */
+.med-list-item__actions {
+    display: flex;
+    gap: var(--space-2);
+    flex-shrink: 0;
+}
+
+.med-list-item__action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    padding: var(--space-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-standard);
+}
+
+.med-list-item__action-btn:hover {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-primary);
+}
+
+.med-list-item__action-btn--delete:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--color-danger);
+}
+
+.med-list-item__action-btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .box-item__header {
+        padding: var(--space-3);
+        gap: var(--space-3);
+    }
+
+    .box-item__expand-btn {
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    .box-item__action-btn {
+        min-width: 40px;
+        min-height: 40px;
+        padding: var(--space-2);
+    }
+
+    .box-item__name {
+        font-size: var(--font-size-base);
+    }
+
+    .med-list-item {
+        padding: var(--space-3);
+    }
+
+    .med-list-item__action-btn {
+        min-width: 36px;
+        min-height: 36px;
+    }
+}

@@ -264,6 +264,47 @@ const Icon = ({ name, size = 20, color = 'currentColor', className = '', ...prop
         map: (
             <path d="M1 6V22L8 18L16 22L23 18V2L16 6L8 2L1 6ZM8 2V18M16 6V22" />
         ),
+        shoppingCart: (
+            <>
+                <circle cx="9" cy="21" r="1" />
+                <circle cx="20" cy="21" r="1" />
+                <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6" />
+            </>
+        ),
+        send: (
+            <>
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </>
+        ),
+        inbox: (
+            <>
+                <polyline points="22 12 18 12 15 22 9 22 6 12 2 12" />
+                <path d="M9 11V7a3 3 0 016 0v4" />
+            </>
+        ),
+        rotateCcw: (
+            <>
+                <polyline points="1 4 1 10 7 10" />
+                <path d="M3.51 15a9 9 0 1014.85-5.36L22 10" />
+            </>
+        ),
+        printer: (
+            <>
+                <polyline points="6 9 6 2 18 2 18 9" />
+                <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2" />
+                <rect x="6" y="14" width="12" height="8" />
+            </>
+        ),
+        share2: (
+            <>
+                <circle cx="18" cy="5" r="3" />
+                <circle cx="6" cy="12" r="3" />
+                <circle cx="18" cy="19" r="3" />
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+            </>
+        ),
     };
 
     return (
