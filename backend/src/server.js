@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
 
+
 const config = require('./config/env');
 const connectDB = require('./config/database');
 const errorHandler = require('./middlewares/errorHandler');
@@ -143,3 +144,12 @@ connectDB().catch((err) => {
    Vercel will handle the server
 ========================= */
 module.exports = app;
+
+if (require.main === module) {
+  const PORT = config.port || 5000;
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running in ${config.nodeEnv} mode on port ${PORT}`);
+    console.log(`👉 Access via: http://localhost:${PORT}`);
+    console.log(`🔌 MongoDB: ${config.mongoUri.split('@').pop()}`); // hide credentials if any
+  });
+}
