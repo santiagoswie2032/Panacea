@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Medications from './pages/Medications';
+import Orders from './pages/Orders';
 import Boxes from './pages/Boxes';
 import Documents from './pages/Documents';
 import Doctors from './pages/Doctors';
@@ -70,6 +71,19 @@ function AppRoutes() {
                             <Navbar />
                             <div className="page-content">
                                 <Medications />
+                            </div>
+                        </div>
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/orders"
+                element={
+                    <ProtectedRoute>
+                        <div className="app-layout">
+                            <Navbar />
+                            <div className="page-content">
+                                <Orders />
                             </div>
                         </div>
                     </ProtectedRoute>

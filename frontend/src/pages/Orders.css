@@ -1,0 +1,255 @@
+/* =========================================
+   ORDERS PAGE — Shopping Cart for Low-Stock Meds
+   Accessible, large-text UI for older adults
+   ========================================= */
+
+.orders-page {
+    padding: var(--space-4);
+    padding-bottom: var(--space-8);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.orders-header {
+    margin-bottom: var(--space-8);
+}
+
+.orders-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.orders-subtitle {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-normal);
+}
+
+/* Empty State */
+.orders-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-12);
+    text-align: center;
+    background: linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-tertiary));
+    border-radius: var(--radius-lg);
+    border: 2px dashed var(--color-border);
+    min-height: 300px;
+}
+
+.orders-empty-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-2);
+}
+
+.orders-empty-message {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    max-width: 400px;
+}
+
+/* Cart Items Container */
+.orders-cart {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+}
+
+/* Order Summary */
+.orders-summary {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    margin-bottom: var(--space-6);
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    box-shadow: var(--shadow-sm);
+}
+
+.orders-summary-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.orders-summary-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+}
+
+.orders-summary-value {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+}
+
+/* Action Buttons */
+.orders-actions {
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+}
+
+.orders-submit-btn {
+    flex: 1;
+    min-width: 200px;
+    padding: var(--space-4) var(--space-6);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease;
+}
+
+.orders-submit-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), var(--shadow-glow-primary);
+}
+
+.orders-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn {
+    cursor: pointer;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-semibold);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--font-size-base);
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--color-primary-dark);
+}
+
+.btn-secondary {
+    background: var(--color-bg-tertiary);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: var(--color-bg-secondary);
+}
+
+/* Spinner */
+.spinner-small {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Info Card */
+.orders-info {
+    margin-top: var(--space-8);
+}
+
+.orders-info-card {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(34, 197, 94, 0.05));
+    border: 1px solid var(--color-info-glow);
+    border-radius: var(--radius-lg);
+}
+
+.orders-info-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.orders-info-text {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .orders-page {
+        padding: var(--space-3);
+    }
+
+    .orders-title {
+        font-size: var(--font-size-xl);
+    }
+
+    .orders-summary {
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    .orders-actions {
+        flex-direction: column;
+    }
+
+    .orders-submit-btn {
+        min-width: 100%;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .orders-submit-btn:hover:not(:disabled),
+    .btn:hover:not(:disabled) {
+        transform: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .orders-page {
+        background: var(--color-bg-primary);
+    }
+
+    .orders-empty {
+        background: linear-gradient(135deg, rgba(30, 30, 30, 0.5), rgba(40, 40, 40, 0.5));
+    }
+}

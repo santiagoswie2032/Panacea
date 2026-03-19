@@ -5,6 +5,7 @@ import './Navbar.css';
 const navItems = [
     { path: '/', icon: 'home', label: 'Home' },
     { path: '/medications', icon: 'pill', label: 'Meds' },
+    { path: '/orders', icon: 'shoppingCart', label: 'Order' },
     { path: '/boxes', icon: 'folder', label: 'Boxes' },
     { path: '/documents', icon: 'folder', label: 'Docs' },
     { path: '/doctors', icon: 'stethoscope', label: 'Doctors' },
