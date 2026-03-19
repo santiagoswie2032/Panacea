@@ -7356,5 +7356,219 @@
     "active": true,
     "createdAt": "2026-03-19T08:23:16.484Z",
     "updatedAt": "2026-03-19T08:23:16.484Z"
+  },
+  {
+    "_id": "0e02a9e5-f68d-460b-a4ec-e046dbca371a",
+    "userId": "69bbcf1c096cece02cb29b3f",
+    "name": "Aspirin",
+    "dosage": "75 mg",
+    "timings": [
+      "09:00"
+    ],
+    "totalStock": 30,
+    "remainingStock": 30,
+    "instructions": "Take after breakfast with a glass of water.",
+    "active": true,
+    "createdAt": "2026-03-19T10:25:33.464Z",
+    "updatedAt": "2026-03-19T10:25:33.464Z"
+  },
+  {
+    "_id": "1c336f17-ff62-4716-b58a-e391e5cfd172",
+    "userId": "69bbcf1c096cece02cb29b3f",
+    "name": "Vitamin D3",
+    "dosage": "2000 IU",
+    "timings": [
+      "08:00"
+    ],
+    "totalStock": 60,
+    "remainingStock": 60,
+    "instructions": "Take in the morning with food.",
+    "active": true,
+    "createdAt": "2026-03-19T10:25:33.473Z",
+    "updatedAt": "2026-03-19T10:25:33.473Z"
+  },
+  {
+    "_id": "48d0b695-c808-48b4-aa0d-1971517b6c27",
+    "userId": "69bbcf1c096cece02cb29b3f",
+    "name": "Aspirin",
+    "dosage": "81mg",
+    "timings": [
+      "08:00"
+    ],
+    "remainingStock": 30,
+    "totalStock": 30,
+    "instructions": "Take with food",
+    "active": true,
+    "createdAt": "2026-03-19T10:25:33.892Z",
+    "updatedAt": "2026-03-19T10:25:33.892Z"
+  },
+  {
+    "_id": "cc8d0a2d-727d-452d-9df7-c0e0f65eb1d9",
+    "userId": "69bbcf1c096cece02cb29b3f",
+    "name": "Lisinopril",
+    "dosage": "10mg",
+    "timings": [
+      "08:00",
+      "20:00"
+    ],
+    "remainingStock": 15,
+    "totalStock": 30,
+    "instructions": "Take on an empty stomach",
+    "active": true,
+    "createdAt": "2026-03-19T10:25:33.892Z",
+    "updatedAt": "2026-03-19T10:25:33.892Z"
+  },
+  {
+    "_id": "9cf640e3-0e9e-490c-8976-728ba41e085e",
+    "userId": "69bbcf1c096cece02cb29b3f",
+    "name": "Atorvastatin",
+    "dosage": "20mg",
+    "timings": [
+      "21:00"
+    ],
+    "remainingStock": 5,
+    "totalStock": 30,
+    "instructions": "Take before bedtime",
+    "active": true,
+    "createdAt": "2026-03-19T10:25:33.892Z",
+    "updatedAt": "2026-03-19T10:25:33.892Z"
+  },
+  {
+    "_id": "e3516d7a-25bb-4ff8-a192-9c281ca6048f",
+    "userId": "69bbcf1c096cece02cb29b3f",
+    "name": "Aspirin",
+    "dosage": "81mg",
+    "timings": [
+      "08:00"
+    ],
+    "remainingStock": 30,
+    "totalStock": 30,
+    "instructions": "Take with food",
+    "active": true,
+    "createdAt": "2026-03-19T10:25:34.484Z",
+    "updatedAt": "2026-03-19T10:25:34.484Z"
+  },
+  {
+    "_id": "3fe2acbf-5c3f-4261-b868-a7402484b00d",
+    "userId": "69bbcf1c096cece02cb29b3f",
+    "name": "Lisinopril",
+    "dosage": "10mg",
+    "timings": [
+      "08:00",
+      "20:00"
+    ],
+    "remainingStock": 15,
+    "totalStock": 30,
+    "instructions": "Take on an empty stomach",
+    "active": true,
+    "createdAt": "2026-03-19T10:25:34.484Z",
+    "updatedAt": "2026-03-19T10:25:34.484Z"
+  },
+  {
+    "_id": "eba41d5e-e951-43c7-a06e-0857d343f89c",
+    "userId": "69bbcf1c096cece02cb29b3f",
+    "name": "Atorvastatin",
+    "dosage": "20mg",
+    "timings": [
+      "21:00"
+    ],
+    "remainingStock": 5,
+    "totalStock": 30,
+    "instructions": "Take before bedtime",
+    "active": true,
+    "createdAt": "2026-03-19T10:25:34.484Z",
+    "updatedAt": "2026-03-19T10:25:34.484Z"
+  },
+  {
+    "_id": "0513ed75-b099-412a-9578-b38408cee1f5",
+    "userId": "69bbcf1c096cece02cb29b3f",
+    "name": "Aspirin",
+    "dosage": "81mg",
+    "timings": [
+      "08:00"
+    ],
+    "remainingStock": 30,
+    "totalStock": 30,
+    "instructions": "Take with food",
+    "active": true,
+    "createdAt": "2026-03-19T10:25:37.152Z",
+    "updatedAt": "2026-03-19T10:25:37.152Z"
+  },
+  {
+    "_id": "f72eaee0-a141-4b69-bd4a-b1705e468025",
+    "userId": "69bbcf1c096cece02cb29b3f",
+    "name": "Lisinopril",
+    "dosage": "10mg",
+    "timings": [
+      "08:00",
+      "20:00"
+    ],
+    "remainingStock": 15,
+    "totalStock": 30,
+    "instructions": "Take on an empty stomach",
+    "active": true,
+    "createdAt": "2026-03-19T10:25:37.152Z",
+    "updatedAt": "2026-03-19T10:25:37.152Z"
+  },
+  {
+    "_id": "fa01915c-38ba-4fa3-9b8d-750307339ac9",
+    "userId": "69bbcf1c096cece02cb29b3f",
+    "name": "Atorvastatin",
+    "dosage": "20mg",
+    "timings": [
+      "21:00"
+    ],
+    "remainingStock": 5,
+    "totalStock": 30,
+    "instructions": "Take before bedtime",
+    "active": true,
+    "createdAt": "2026-03-19T10:25:37.152Z",
+    "updatedAt": "2026-03-19T10:25:37.152Z"
+  },
+  {
+    "_id": "7cb314eb-4378-4cdd-a837-ad2d02202de9",
+    "userId": "69bbcf1c096cece02cb29b3f",
+    "name": "Aspirin",
+    "dosage": "81mg",
+    "timings": [
+      "08:00"
+    ],
+    "remainingStock": 30,
+    "totalStock": 30,
+    "instructions": "Take with food",
+    "active": true,
+    "createdAt": "2026-03-19T10:25:37.425Z",
+    "updatedAt": "2026-03-19T10:25:37.425Z"
+  },
+  {
+    "_id": "382c804d-7637-4117-bac3-c347104a1dc7",
+    "userId": "69bbcf1c096cece02cb29b3f",
+    "name": "Lisinopril",
+    "dosage": "10mg",
+    "timings": [
+      "08:00",
+      "20:00"
+    ],
+    "remainingStock": 15,
+    "totalStock": 30,
+    "instructions": "Take on an empty stomach",
+    "active": true,
+    "createdAt": "2026-03-19T10:25:37.425Z",
+    "updatedAt": "2026-03-19T10:25:37.425Z"
+  },
+  {
+    "_id": "fd438aa6-a7ea-4ab0-bd86-160f1a7821c7",
+    "userId": "69bbcf1c096cece02cb29b3f",
+    "name": "Atorvastatin",
+    "dosage": "20mg",
+    "timings": [
+      "21:00"
+    ],
+    "remainingStock": 5,
+    "totalStock": 30,
+    "instructions": "Take before bedtime",
+    "active": true,
+    "createdAt": "2026-03-19T10:25:37.425Z",
+    "updatedAt": "2026-03-19T10:25:37.425Z"
   }
 ]

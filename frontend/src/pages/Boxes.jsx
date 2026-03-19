@@ -10,7 +10,7 @@
  * - Form modals for creating/editing boxes and medications
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useToast } from '../context/ToastContext';
 import api from '../services/api';
 import Icon from '../components/Icon';
@@ -23,6 +23,7 @@ export default function Boxes() {
     const toast = useToast();
     const [boxes, setBoxes] = useState([]);
     const [loading, setLoading] = useState(true);
+    const hasLoaded = useRef(false);
 
     // Form state
     const [showBoxForm, setShowBoxForm] = useState(false);
@@ -31,22 +32,38 @@ export default function Boxes() {
     const [selectedBoxForMed, setSelectedBoxForMed] = useState(null);
     const [editingMedication, setEditingMedication] = useState(null);
 
-    // Fetch all boxes
-    const fetchBoxes = useCallback(async () => {
+    // Fetch all boxes - call directly, not in useCallback
+    const fetchBoxes = async () => {
         try {
             const data = await api.getBoxes();
             setBoxes(data);
         } catch (error) {
-            toast.error('Failed to load boxes');
-            console.error(error);
+            // If backend endpoint isn't implemented yet, silently treat as no boxes
+            setBoxes([]);
+            console.warn('Boxes backend not yet implemented:', error.message);
         } finally {
             setLoading(false);
         }
-    }, [toast]);
+    };
 
+    // Load boxes only once on mount (prevent StrictMode double-mounting)
     useEffect(() => {
-        fetchBoxes();
-    }, [fetchBoxes]);
+        if (!hasLoaded.current) {
+            hasLoaded.current = true;
+            fetchBoxes();
+        }
+    }, []);
+
+    // Helper to handle API errors gracefully
+    const handleApiError = (error) => {
+        console.error(error);
+        // Silently handle if backend isn't implemented
+        if (error.message && (error.message.includes('404') || error.message.includes('Failed to fetch'))) {
+            toast.error('Boxes backend not yet implemented. Please implement the /api/boxes endpoints.');
+        } else {
+            toast.error(error.message || 'Operation failed');
+        }
+    };
 
     // ============ BOX HANDLERS ============
 
@@ -55,9 +72,10 @@ export default function Boxes() {
             await api.createBox(boxData);
             toast.success('Box created!');
             setShowBoxForm(false);
+            setEditingBox(null);
             await fetchBoxes();
         } catch (error) {
-            toast.error(error.message);
+            handleApiError(error);
         }
     };
 
@@ -68,7 +86,7 @@ export default function Boxes() {
             setEditingBox(null);
             await fetchBoxes();
         } catch (error) {
-            toast.error(error.message);
+            handleApiError(error);
         }
     };
 
@@ -81,7 +99,7 @@ export default function Boxes() {
             toast.success('Box deleted');
             await fetchBoxes();
         } catch (error) {
-            toast.error(error.message);
+            handleApiError(error);
         }
     };
 
@@ -113,7 +131,7 @@ export default function Boxes() {
             setEditingMedication(null);
             await fetchBoxes();
         } catch (error) {
-            toast.error(error.message);
+            handleApiError(error);
         }
     };
 
@@ -132,7 +150,7 @@ export default function Boxes() {
             toast.success('Medication removed');
             await fetchBoxes();
         } catch (error) {
-            toast.error(error.message);
+            handleApiError(error);
         }
     };
 
