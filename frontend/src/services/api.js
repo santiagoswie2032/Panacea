@@ -125,6 +125,30 @@ class ApiService {
     uploadProfilePicture(formData) { return this.post('/users/profile-picture', formData); }
     getEmergencyInfo() { return this.get('/users/emergency'); }
     updateEmergencyInfo(data) { return this.put('/users/emergency', data); }
+
+    // Boxes endpoints — Digitized medication storage tracking
+    // Get all boxes with their medications
+    getBoxes() { return this.get('/boxes'); }
+    // Get a single box by ID
+    getBox(id) { return this.get(`/boxes/${id}`); }
+    // Create a new box
+    createBox(data) { return this.post('/boxes', data); }
+    // Update a box (e.g., rename it)
+    updateBox(id, data) { return this.put(`/boxes/${id}`, data); }
+    // Delete a box and all its medications
+    deleteBox(id) { return this.delete(`/boxes/${id}`); }
+    // Add a medication to a specific box
+    addMedicationToBox(boxId, medicationData) { 
+        return this.post(`/boxes/${boxId}/medications`, medicationData); 
+    }
+    // Update a medication within a box
+    updateBoxMedication(boxId, medicationId, data) { 
+        return this.put(`/boxes/${boxId}/medications/${medicationId}`, data); 
+    }
+    // Delete a medication from a box
+    deleteBoxMedication(boxId, medicationId) { 
+        return this.delete(`/boxes/${boxId}/medications/${medicationId}`); 
+    }
 }
 
 const api = new ApiService();
