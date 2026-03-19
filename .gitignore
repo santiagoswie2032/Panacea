@@ -5,7 +5,7 @@ node_modules/
 frontend/dist/
 
 # Environment files
-backend/.env
+
 
 # Uploads
 backend/uploads/
